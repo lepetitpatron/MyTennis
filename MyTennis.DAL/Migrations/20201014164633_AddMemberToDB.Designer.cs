@@ -3,90 +3,23 @@ using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using MyTennis.DAL;
 
 namespace MyTennis.DAL.Migrations
 {
     [DbContext(typeof(MyTennisDBContext))]
-    partial class MyTennisDBContextModelSnapshot : ModelSnapshot
+    [Migration("20201014164633_AddMemberToDB")]
+    partial class AddMemberToDB
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
                 .HasAnnotation("ProductVersion", "3.1.8")
                 .HasAnnotation("Relational:MaxIdentifierLength", 128)
                 .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
-
-            modelBuilder.Entity("MyTennis.DAL.Entities.Fine", b =>
-                {
-                    b.Property<int>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int")
-                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
-
-                    b.Property<decimal>("Amount")
-                        .HasColumnType("decimal(7,2)")
-                        .IsUnicode(false);
-
-                    b.Property<int>("FineNumber")
-                        .HasColumnType("int")
-                        .HasMaxLength(10)
-                        .IsUnicode(false);
-
-                    b.Property<DateTime>("HandoutDate")
-                        .HasColumnType("datetime2");
-
-                    b.Property<int?>("MemberId")
-                        .HasColumnType("int");
-
-                    b.Property<DateTime>("PaymentDate")
-                        .HasColumnType("datetime2");
-
-                    b.HasKey("Id");
-
-                    b.HasIndex("FineNumber")
-                        .IsUnique();
-
-                    b.HasIndex("MemberId");
-
-                    b.ToTable("Fine");
-                });
-
-            modelBuilder.Entity("MyTennis.DAL.Entities.Game", b =>
-                {
-                    b.Property<int>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int")
-                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
-
-                    b.Property<DateTime>("Date")
-                        .HasColumnType("datetime2");
-
-                    b.Property<string>("GameNumber")
-                        .IsRequired()
-                        .HasColumnType("varchar(10)")
-                        .HasMaxLength(10)
-                        .IsUnicode(false);
-
-                    b.Property<byte?>("LeagueId")
-                        .HasColumnType("tinyint");
-
-                    b.Property<int?>("MemberId")
-                        .HasColumnType("int");
-
-                    b.HasKey("Id");
-
-                    b.HasIndex("GameNumber")
-                        .IsUnique();
-
-                    b.HasIndex("LeagueId");
-
-                    b.HasIndex("MemberId");
-
-                    b.ToTable("Game");
-                });
 
             modelBuilder.Entity("MyTennis.DAL.Entities.Gender", b =>
                 {
@@ -201,38 +134,6 @@ namespace MyTennis.DAL.Migrations
                     b.ToTable("Member");
                 });
 
-            modelBuilder.Entity("MyTennis.DAL.Entities.Result", b =>
-                {
-                    b.Property<int>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int")
-                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
-
-                    b.Property<int?>("GameId")
-                        .HasColumnType("int");
-
-                    b.Property<byte>("ScoreOpponent")
-                        .HasColumnType("tinyint")
-                        .HasMaxLength(3)
-                        .IsUnicode(false);
-
-                    b.Property<byte>("ScoreTeamMember")
-                        .HasColumnType("tinyint")
-                        .HasMaxLength(3)
-                        .IsUnicode(false);
-
-                    b.Property<byte>("SetNr")
-                        .HasColumnType("tinyint")
-                        .HasMaxLength(3)
-                        .IsUnicode(false);
-
-                    b.HasKey("Id");
-
-                    b.HasIndex("GameId");
-
-                    b.ToTable("Result");
-                });
-
             modelBuilder.Entity("MyTennis.DAL.Entities.Role", b =>
                 {
                     b.Property<int>("Id")
@@ -254,36 +155,11 @@ namespace MyTennis.DAL.Migrations
                     b.ToTable("Role");
                 });
 
-            modelBuilder.Entity("MyTennis.DAL.Entities.Fine", b =>
-                {
-                    b.HasOne("MyTennis.DAL.Entities.Member", "Member")
-                        .WithMany()
-                        .HasForeignKey("MemberId");
-                });
-
-            modelBuilder.Entity("MyTennis.DAL.Entities.Game", b =>
-                {
-                    b.HasOne("MyTennis.DAL.Entities.League", "League")
-                        .WithMany()
-                        .HasForeignKey("LeagueId");
-
-                    b.HasOne("MyTennis.DAL.Entities.Member", "Member")
-                        .WithMany()
-                        .HasForeignKey("MemberId");
-                });
-
             modelBuilder.Entity("MyTennis.DAL.Entities.Member", b =>
                 {
                     b.HasOne("MyTennis.DAL.Entities.Gender", "Gender")
                         .WithMany()
                         .HasForeignKey("GenderId");
-                });
-
-            modelBuilder.Entity("MyTennis.DAL.Entities.Result", b =>
-                {
-                    b.HasOne("MyTennis.DAL.Entities.Game", "Game")
-                        .WithMany()
-                        .HasForeignKey("GameId");
                 });
 #pragma warning restore 612, 618
         }
