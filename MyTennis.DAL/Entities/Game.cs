@@ -6,8 +6,8 @@ namespace MyTennis.DAL.Entities
     {
         public int Id { get; set; }
         public string GameNumber { get; set; }
-        public Member Member { get; set; }
-        public League League { get; set; }
+        public Member MemberId { get; set; }
+        public League LeagueId { get; set; }
         public DateTime Date { get; set; }
     }
 }
