@@ -3,15 +3,17 @@ using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using MyTennis.DAL;
 
 namespace MyTennis.DAL.Migrations
 {
     [DbContext(typeof(MyTennisDBContext))]
-    partial class MyTennisDBContextModelSnapshot : ModelSnapshot
+    [Migration("20201016140027_AddFineToDB")]
+    partial class AddFineToDB
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -52,40 +54,6 @@ namespace MyTennis.DAL.Migrations
                     b.HasIndex("MemberId");
 
                     b.ToTable("Fine");
-                });
-
-            modelBuilder.Entity("MyTennis.DAL.Entities.Game", b =>
-                {
-                    b.Property<int>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int")
-                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
-
-                    b.Property<DateTime>("Date")
-                        .HasColumnType("datetime2");
-
-                    b.Property<string>("GameNumber")
-                        .IsRequired()
-                        .HasColumnType("varchar(10)")
-                        .HasMaxLength(10)
-                        .IsUnicode(false);
-
-                    b.Property<byte?>("LeagueId")
-                        .HasColumnType("tinyint");
-
-                    b.Property<int?>("MemberId")
-                        .HasColumnType("int");
-
-                    b.HasKey("Id");
-
-                    b.HasIndex("GameNumber")
-                        .IsUnique();
-
-                    b.HasIndex("LeagueId");
-
-                    b.HasIndex("MemberId");
-
-                    b.ToTable("Game");
                 });
 
             modelBuilder.Entity("MyTennis.DAL.Entities.Gender", b =>
@@ -222,43 +190,11 @@ namespace MyTennis.DAL.Migrations
 
                     b.HasKey("Id");
 
+                    b.HasIndex("MemberId");
+
                     b.HasIndex("RoleId");
 
-                    b.HasIndex("MemberId", "RoleId", "StartDate", "EndDate");
-
                     b.ToTable("MemberRole");
-                });
-
-            modelBuilder.Entity("MyTennis.DAL.Entities.Result", b =>
-                {
-                    b.Property<int>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int")
-                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
-
-                    b.Property<int?>("GameId")
-                        .HasColumnType("int");
-
-                    b.Property<byte>("ScoreOpponent")
-                        .HasColumnType("tinyint")
-                        .HasMaxLength(3)
-                        .IsUnicode(false);
-
-                    b.Property<byte>("ScoreTeamMember")
-                        .HasColumnType("tinyint")
-                        .HasMaxLength(3)
-                        .IsUnicode(false);
-
-                    b.Property<byte>("SetNr")
-                        .HasColumnType("tinyint")
-                        .HasMaxLength(3)
-                        .IsUnicode(false);
-
-                    b.HasKey("Id");
-
-                    b.HasIndex("GameId");
-
-                    b.ToTable("Result");
                 });
 
             modelBuilder.Entity("MyTennis.DAL.Entities.Role", b =>
@@ -289,17 +225,6 @@ namespace MyTennis.DAL.Migrations
                         .HasForeignKey("MemberId");
                 });
 
-            modelBuilder.Entity("MyTennis.DAL.Entities.Game", b =>
-                {
-                    b.HasOne("MyTennis.DAL.Entities.League", "League")
-                        .WithMany()
-                        .HasForeignKey("LeagueId");
-
-                    b.HasOne("MyTennis.DAL.Entities.Member", "Member")
-                        .WithMany()
-                        .HasForeignKey("MemberId");
-                });
-
             modelBuilder.Entity("MyTennis.DAL.Entities.Member", b =>
                 {
                     b.HasOne("MyTennis.DAL.Entities.Gender", "Gender")
@@ -320,13 +245,6 @@ namespace MyTennis.DAL.Migrations
                         .HasForeignKey("RoleId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
-                });
-
-            modelBuilder.Entity("MyTennis.DAL.Entities.Result", b =>
-                {
-                    b.HasOne("MyTennis.DAL.Entities.Game", "Game")
-                        .WithMany()
-                        .HasForeignKey("GameId");
                 });
 #pragma warning restore 612, 618
         }

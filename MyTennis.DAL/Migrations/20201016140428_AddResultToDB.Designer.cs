@@ -3,15 +3,17 @@ using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using MyTennis.DAL;
 
 namespace MyTennis.DAL.Migrations
 {
     [DbContext(typeof(MyTennisDBContext))]
-    partial class MyTennisDBContextModelSnapshot : ModelSnapshot
+    [Migration("20201016140428_AddResultToDB")]
+    partial class AddResultToDB
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -222,9 +224,9 @@ namespace MyTennis.DAL.Migrations
 
                     b.HasKey("Id");
 
-                    b.HasIndex("RoleId");
+                    b.HasIndex("MemberId");
 
-                    b.HasIndex("MemberId", "RoleId", "StartDate", "EndDate");
+                    b.HasIndex("RoleId");
 
                     b.ToTable("MemberRole");
                 });
