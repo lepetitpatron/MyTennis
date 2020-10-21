@@ -3,7 +3,13 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 16
 VisualStudioVersion = 16.0.30523.141
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MyTennis.DAL", "MyTennis.DAL\MyTennis.DAL.csproj", "{C7695C61-1566-4D95-8252-B82877E0C519}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "MyTennis.DAL", "MyTennis.DAL\MyTennis.DAL.csproj", "{C7695C61-1566-4D95-8252-B82877E0C519}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "MyTennis.UI", "MyTennis.UI\MyTennis.UI.csproj", "{37022B9B-CBE6-49E0-8105-75AEF57DF2F5}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MyTennis.Service", "MyTennis.Service\MyTennis.Service.csproj", "{A2C9F04A-3809-4710-BDBA-05C911567772}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MyTennis.BLL", "MyTennis.BLL\MyTennis.BLL.csproj", "{58C4BD30-DE0C-4812-AD5D-6F61C3DFED02}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -15,6 +21,18 @@ Global
 		{C7695C61-1566-4D95-8252-B82877E0C519}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{C7695C61-1566-4D95-8252-B82877E0C519}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{C7695C61-1566-4D95-8252-B82877E0C519}.Release|Any CPU.Build.0 = Release|Any CPU
+		{37022B9B-CBE6-49E0-8105-75AEF57DF2F5}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{37022B9B-CBE6-49E0-8105-75AEF57DF2F5}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{37022B9B-CBE6-49E0-8105-75AEF57DF2F5}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{37022B9B-CBE6-49E0-8105-75AEF57DF2F5}.Release|Any CPU.Build.0 = Release|Any CPU
+		{A2C9F04A-3809-4710-BDBA-05C911567772}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{A2C9F04A-3809-4710-BDBA-05C911567772}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{A2C9F04A-3809-4710-BDBA-05C911567772}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{A2C9F04A-3809-4710-BDBA-05C911567772}.Release|Any CPU.Build.0 = Release|Any CPU
+		{58C4BD30-DE0C-4812-AD5D-6F61C3DFED02}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{58C4BD30-DE0C-4812-AD5D-6F61C3DFED02}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{58C4BD30-DE0C-4812-AD5D-6F61C3DFED02}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{58C4BD30-DE0C-4812-AD5D-6F61C3DFED02}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

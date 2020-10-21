@@ -91,7 +91,9 @@ namespace MyTennis.DAL.Migrations
             modelBuilder.Entity("MyTennis.DAL.Entities.Gender", b =>
                 {
                     b.Property<byte>("Id")
-                        .HasColumnType("tinyint");
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("tinyint")
+                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
                     b.Property<string>("Name")
                         .IsRequired()
@@ -110,7 +112,9 @@ namespace MyTennis.DAL.Migrations
             modelBuilder.Entity("MyTennis.DAL.Entities.League", b =>
                 {
                     b.Property<byte>("Id")
-                        .HasColumnType("tinyint");
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("tinyint")
+                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
                     b.Property<string>("Name")
                         .IsRequired()
@@ -280,6 +284,33 @@ namespace MyTennis.DAL.Migrations
                         .IsUnique();
 
                     b.ToTable("Role");
+
+                    b.HasData(
+                        new
+                        {
+                            Id = 1,
+                            Name = "Voorzitter"
+                        },
+                        new
+                        {
+                            Id = 2,
+                            Name = "Bestuurslid"
+                        },
+                        new
+                        {
+                            Id = 3,
+                            Name = "Secretaris"
+                        },
+                        new
+                        {
+                            Id = 4,
+                            Name = "Penningmeester"
+                        },
+                        new
+                        {
+                            Id = 5,
+                            Name = "Speler"
+                        });
                 });
 
             modelBuilder.Entity("MyTennis.DAL.Entities.Fine", b =>
