@@ -1,4 +1,7 @@
 ﻿using Microsoft.AspNetCore.Mvc;
+using MyTennis.BLL;
+using MyTennis.Core;
+using System.Collections.Generic;
 
 namespace MyTennis.Service.Controllers
 {
@@ -6,9 +9,18 @@ namespace MyTennis.Service.Controllers
     [ApiController]
     public class RoleController : ControllerBase
     {
+        private readonly RoleLogic logic;
+
+        public RoleController()
+        {
+            this.logic = new RoleLogic();
+        }
+
         [HttpGet]
-        public void GetRoles()
-        { }
+        public List<RoleDTO> GetRoles()
+        {
+            return logic.GetAll();
+        }
 
         [HttpPut("{id}")]
         public void PutRole(int id)

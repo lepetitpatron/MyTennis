@@ -2,7 +2,7 @@
 
 namespace MyTennis.DAL.Entities
 {
-    class Fine
+    public class Fine
     {
         public int Id { get; set; }
         public int FineNumber { get; set; }

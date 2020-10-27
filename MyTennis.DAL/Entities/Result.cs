@@ -1,6 +1,6 @@
 ﻿namespace MyTennis.DAL.Entities
 {
-    class Result
+    public class Result
     {
         public int Id { get; set; }
         public Game Game { get; set; }

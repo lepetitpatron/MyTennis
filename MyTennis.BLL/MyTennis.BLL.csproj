@@ -4,4 +4,13 @@
     <TargetFramework>netcoreapp3.1</TargetFramework>
   </PropertyGroup>
 
+  <ItemGroup>
+    <PackageReference Include="AutoMapper" Version="10.1.1" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\MyTennis.Core\MyTennis.Core.csproj" />
+    <ProjectReference Include="..\MyTennis.DAL\MyTennis.DAL.csproj" />
+  </ItemGroup>
+
 </Project>

@@ -3,7 +3,7 @@ using System.Collections.Generic;
 
 namespace MyTennis.DAL.Entities
 {
-    class Member
+    public class Member
     {
         public int Id { get; set; }
         public string FederationNr { get; set; }

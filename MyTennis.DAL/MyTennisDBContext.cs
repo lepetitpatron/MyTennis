@@ -3,7 +3,7 @@ using MyTennis.DAL.Entities;
 
 namespace MyTennis.DAL
 {
-    class MyTennisDBContext : DbContext
+    public class MyTennisDBContext : DbContext
     {
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {

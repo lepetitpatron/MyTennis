@@ -2,7 +2,7 @@
 
 namespace MyTennis.DAL.Entities
 {
-    class Game
+    public class Game
     {
         public int Id { get; set; }
         public string GameNumber { get; set; }

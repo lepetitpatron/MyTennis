@@ -4,4 +4,9 @@
     <TargetFramework>netcoreapp3.1</TargetFramework>
   </PropertyGroup>
 
+  <ItemGroup>
+    <ProjectReference Include="..\MyTennis.BLL\MyTennis.BLL.csproj" />
+    <ProjectReference Include="..\MyTennis.Core\MyTennis.Core.csproj" />
+  </ItemGroup>
+
 </Project>
