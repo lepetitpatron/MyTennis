@@ -8,6 +8,6 @@ namespace MyTennis.BLL
         TEntity FindById(int? id);
         void Delete(TEntity entity);
         List<TEntity> GetAll();
-        TEntity Update(TEntity entity);
+        bool Update(TEntity entity);
     }
 }

@@ -6,11 +6,11 @@
         xmlns:local="clr-namespace:MyTennis.UI"
         mc:Ignorable="d"
         Title="MainWindow" Height="450" Width="800">
-    <Grid>
-        <StackPanel>
-            <TextBox x:Name="Text" Width="200" Height="20"></TextBox>
+    <Grid HorizontalAlignment="Left">
+        <StackPanel Orientation="Vertical">
+            <Label FontSize="14" HorizontalAlignment="Center">Rol Toevoegen</Label>
+            <TextBox x:Name="Text" Width="200" Height="20" Margin="20"></TextBox>
             <Button Width="100" Height="20" Content="Rol Toevoegen" Click="Button_Click"></Button>
         </StackPanel>
-       
     </Grid>
 </Window>

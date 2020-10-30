@@ -19,7 +19,7 @@ namespace MyTennis.BLL
 
         public bool Create(RoleDTO entity)
         {
-            throw new System.NotImplementedException();
+            return repository.Add(Utilities.Mapper.Map<RoleDTO, Role>(entity));
         }
 
         public void Delete(RoleDTO entity)
@@ -29,7 +29,14 @@ namespace MyTennis.BLL
 
         public RoleDTO FindById(int? id)
         {
-            throw new System.NotImplementedException();
+            try
+            {
+                return Utilities.Mapper.Map<Role, RoleDTO>(repository.FindById(id));
+            }
+            catch (Exception e)
+            {
+                throw new Exception(e.Message);
+            }
         }
 
         public List<RoleDTO> GetAll()
@@ -44,9 +51,9 @@ namespace MyTennis.BLL
             }
         }
 
-        public RoleDTO Update(RoleDTO entity)
+        public bool Update(RoleDTO entity)
         {
-            throw new System.NotImplementedException();
+            return repository.Modify(Utilities.Mapper.Map<RoleDTO, Role>(entity));
         }
     }
 }

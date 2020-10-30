@@ -4,9 +4,9 @@ namespace MyTennis.DAL.Repositories
 {
     public interface IRepository<TEntity> where TEntity : class 
     {
-        int Add(TEntity t);
+        bool Add(TEntity t);
         TEntity FindById(int? id);
-        void Modify(TEntity t);
+        bool Modify(TEntity t);
         List<TEntity> GetAll();
         void Remove(TEntity t);
     }

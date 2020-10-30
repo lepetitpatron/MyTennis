@@ -1,4 +1,6 @@
-﻿using MyTennis.DAL.Entities;
+﻿using Microsoft.EntityFrameworkCore.ChangeTracking;
+using MyTennis.DAL.Entities;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 
@@ -13,14 +15,24 @@ namespace MyTennis.DAL.Repositories
             _context = context;
         }
 
-        public int Add(Role t)
+        public bool Add(Role t)
         {
-            throw new System.NotImplementedException();
+            try
+            {
+                _context.Roles.Add(t);
+                _context.SaveChanges();
+
+                return true;
+            }
+            catch(Exception)
+            {
+                return false;
+            }
         }
 
         public Role FindById(int? id)
         {
-            throw new System.NotImplementedException();
+            return _context.Set<Role>().SingleOrDefault(e => e.Id == id);
         }
 
         public List<Role> GetAll()
@@ -31,9 +43,16 @@ namespace MyTennis.DAL.Repositories
             return result.ToList();
         }
 
-        public void Modify(Role t)
+        public bool Modify(Role t)
         {
-            throw new System.NotImplementedException();
+            Role entity = _context.Roles.Where(e => e.Id == t.Id).FirstOrDefault();
+            if (entity == null) return false;
+
+            EntityEntry entry = _context.Entry(entity);
+            entry.CurrentValues.SetValues(t);
+            _context.SaveChanges();
+
+            return true;
         }
 
         public void Remove(Role t)

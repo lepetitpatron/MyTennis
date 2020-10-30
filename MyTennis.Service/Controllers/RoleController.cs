@@ -2,6 +2,8 @@
 using MyTennis.BLL;
 using MyTennis.Core;
 using System.Collections.Generic;
+using System.Net;
+using System.Net.Http;
 
 namespace MyTennis.Service.Controllers
 {
@@ -22,17 +24,28 @@ namespace MyTennis.Service.Controllers
             return logic.GetAll();
         }
 
-        [HttpPut("{id}")]
-        public void PutRole(int id)
-        { }
+        [HttpGet("{id}")]
+        public RoleDTO GetRole(int id)
+        {
+            return logic.FindById(id);
+        }
+
+        [HttpPut]
+        public HttpResponseMessage UpdateRole([FromBody] RoleDTO role)
+        {
+            if (logic.Update(role))
+                return new HttpResponseMessage(HttpStatusCode.OK);
+            else
+                return new HttpResponseMessage(HttpStatusCode.NotFound);
+        }
 
         [HttpPost]
-        public void PostProduct()
-        { }
-
-        private bool RoleExists()
+        public HttpResponseMessage PostRole([FromBody] RoleDTO role)
         {
-            return false;
+            if (logic.Create(role))
+                return new HttpResponseMessage(HttpStatusCode.OK);
+            else
+                return new HttpResponseMessage(HttpStatusCode.InternalServerError);
         }
     }
 }
