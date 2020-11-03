@@ -22,12 +22,12 @@ namespace MyTennis.BLL
             return repository.Add(Utilities.Mapper.Map<RoleDTO, Role>(entity));
         }
 
-        public void Delete(RoleDTO entity)
+        public bool Delete(int id)
         {
-            throw new System.NotImplementedException();
+            return repository.Remove(id);
         }
 
-        public RoleDTO FindById(int? id)
+        public RoleDTO FindById(int id)
         {
             try
             {

@@ -1,4 +1,5 @@
-﻿using MyTennis.Core;
+﻿using MyTennis.Core.DTO;
+using MyTennis.UI.Processors;
 using System;
 using System.Collections.Generic;
 using System.Linq;

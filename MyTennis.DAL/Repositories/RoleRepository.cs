@@ -30,7 +30,7 @@ namespace MyTennis.DAL.Repositories
             }
         }
 
-        public Role FindById(int? id)
+        public Role FindById(int id)
         {
             return _context.Set<Role>().SingleOrDefault(e => e.Id == id);
         }
@@ -55,9 +55,9 @@ namespace MyTennis.DAL.Repositories
             return true;
         }
 
-        public void Remove(Role t)
+        public bool Remove(int id)
         {
-            throw new System.NotImplementedException();
+            return false;
         }
     }
 }
