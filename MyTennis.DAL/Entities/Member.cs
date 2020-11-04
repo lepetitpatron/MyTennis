@@ -17,6 +17,7 @@ namespace MyTennis.DAL.Entities
         public string Zipcode { get; set; }
         public string City { get; set; }
         public string PhoneNr { get; set; }
+        public bool IsActive { get; set; }
         public IList<MemberRole> MemberRoles { get; set; }
     }
 }

@@ -10,14 +10,14 @@ using MyTennis.DAL;
 namespace MyTennis.DAL.Migrations
 {
     [DbContext(typeof(MyTennisDBContext))]
-    [Migration("20201025135556_SeedDatabase")]
-    partial class SeedDatabase
+    [Migration("20201104163735_CreateDatabase")]
+    partial class CreateDatabase
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
-                .HasAnnotation("ProductVersion", "3.1.8")
+                .HasAnnotation("ProductVersion", "3.1.9")
                 .HasAnnotation("Relational:MaxIdentifierLength", 128)
                 .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
@@ -107,12 +107,26 @@ namespace MyTennis.DAL.Migrations
                         .IsUnique();
 
                     b.ToTable("Gender");
+
+                    b.HasData(
+                        new
+                        {
+                            Id = (byte)1,
+                            Name = "Man"
+                        },
+                        new
+                        {
+                            Id = (byte)2,
+                            Name = "Vrouw"
+                        });
                 });
 
             modelBuilder.Entity("MyTennis.DAL.Entities.League", b =>
                 {
                     b.Property<byte>("Id")
-                        .HasColumnType("tinyint");
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("tinyint")
+                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
                     b.Property<string>("Name")
                         .IsRequired()
@@ -169,6 +183,9 @@ namespace MyTennis.DAL.Migrations
 
                     b.Property<byte?>("GenderId")
                         .HasColumnType("tinyint");
+
+                    b.Property<bool>("IsActive")
+                        .HasColumnType("bit");
 
                     b.Property<string>("LastName")
                         .IsRequired()
@@ -282,6 +299,33 @@ namespace MyTennis.DAL.Migrations
                         .IsUnique();
 
                     b.ToTable("Role");
+
+                    b.HasData(
+                        new
+                        {
+                            Id = 1,
+                            Name = "Voorzitter"
+                        },
+                        new
+                        {
+                            Id = 2,
+                            Name = "Bestuurslid"
+                        },
+                        new
+                        {
+                            Id = 3,
+                            Name = "Secretaris"
+                        },
+                        new
+                        {
+                            Id = 4,
+                            Name = "Penningmeester"
+                        },
+                        new
+                        {
+                            Id = 5,
+                            Name = "Speler"
+                        });
                 });
 
             modelBuilder.Entity("MyTennis.DAL.Entities.Fine", b =>

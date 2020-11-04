@@ -5,6 +5,23 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <Compile Remove="Migrations\20201104135858_AddGenderToDB.cs" />
+    <Compile Remove="Migrations\20201104135858_AddGenderToDB.Designer.cs" />
+    <Compile Remove="Migrations\20201104140316_Test.cs" />
+    <Compile Remove="Migrations\20201104140316_Test.Designer.cs" />
+    <Compile Remove="Migrations\20201104140628_Test2.cs" />
+    <Compile Remove="Migrations\20201104140628_Test2.Designer.cs" />
+    <Compile Remove="Migrations\20201104141344_Test3.cs" />
+    <Compile Remove="Migrations\20201104141344_Test3.Designer.cs" />
+    <Compile Remove="Migrations\20201104143029_Test7.cs" />
+    <Compile Remove="Migrations\20201104143029_Test7.Designer.cs" />
+    <Compile Remove="Migrations\20201104143056_Test7.cs" />
+    <Compile Remove="Migrations\20201104143056_Test7.Designer.cs" />
+    <Compile Remove="Migrations\20201104162636_Test8.cs" />
+    <Compile Remove="Migrations\20201104162636_Test8.Designer.cs" />
+  </ItemGroup>
+
+  <ItemGroup>
     <PackageReference Include="Microsoft.EntityFrameworkCore" Version="3.1.9" />
     <PackageReference Include="Microsoft.EntityFrameworkCore.SqlServer" Version="3.1.9" />
     <PackageReference Include="Microsoft.EntityFrameworkCore.Tools" Version="3.1.9">
