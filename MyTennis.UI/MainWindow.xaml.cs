@@ -28,7 +28,81 @@ namespace MyTennis.UI
             ApiHelper.InitializeClient();
         }
 
-        private void Button_Click(object sender, RoutedEventArgs e)
-        { }
+        private void GameIcon_MouseEnter(object sender, MouseEventArgs e)
+        {
+            GameIcon.Foreground = new SolidColorBrush(Colors.Gold);
+            GameLabel.Foreground = new SolidColorBrush(Colors.Gold);
+        }
+
+        private void MemberIcon_MouseEnter(object sender, MouseEventArgs e)
+        {
+            MemberIcon.Foreground = new SolidColorBrush(Colors.Gold);
+            MemberLabel.Foreground = new SolidColorBrush(Colors.Gold);
+        }
+
+        private void FineIcon_MouseEnter(object sender, MouseEventArgs e)
+        {
+            FineIcon.Foreground = new SolidColorBrush(Colors.Gold);
+            FineLabel.Foreground = new SolidColorBrush(Colors.Gold);
+        }
+
+        private void RoleIcon_MouseEnter(object sender, MouseEventArgs e)
+        {
+            RoleIcon.Foreground = new SolidColorBrush(Colors.Gold);
+            RoleLabel.Foreground = new SolidColorBrush(Colors.Gold);
+        }
+
+        private void GameLabel_MouseEnter(object sender, MouseEventArgs e)
+        {
+            GameIcon.Foreground = new SolidColorBrush(Colors.Gold);
+            GameLabel.Foreground = new SolidColorBrush(Colors.Gold);
+        }
+
+        private void MemberLabel_MouseEnter(object sender, MouseEventArgs e)
+        {
+            MemberIcon.Foreground = new SolidColorBrush(Colors.Gold);
+            MemberLabel.Foreground = new SolidColorBrush(Colors.Gold);
+        }
+
+        private void FineLabel_MouseEnter(object sender, MouseEventArgs e)
+        {
+            FineIcon.Foreground = new SolidColorBrush(Colors.Gold);
+            FineLabel.Foreground = new SolidColorBrush(Colors.Gold);
+        }
+
+        private void RoleLabel_MouseEnter(object sender, MouseEventArgs e)
+        {
+            RoleIcon.Foreground = new SolidColorBrush(Colors.Gold);
+            RoleLabel.Foreground = new SolidColorBrush(Colors.Gold);
+        }
+
+        private void Rectangle_MouseEnter(object sender, MouseEventArgs e)
+        {
+            MakeElementsWhite();
+        }
+
+        private void MakeElementsWhite()
+        {
+            GameIcon.Foreground = new SolidColorBrush(Colors.White);
+            GameLabel.Foreground = new SolidColorBrush(Colors.White);
+            MemberIcon.Foreground = new SolidColorBrush(Colors.White);
+            MemberLabel.Foreground = new SolidColorBrush(Colors.White);
+            FineIcon.Foreground = new SolidColorBrush(Colors.White);
+            FineLabel.Foreground = new SolidColorBrush(Colors.White);
+            RoleIcon.Foreground = new SolidColorBrush(Colors.White);
+            RoleLabel.Foreground = new SolidColorBrush(Colors.White);
+        }
+
+        private void Rectangle_MouseEnter_1(object sender, MouseEventArgs e)
+        {
+            GameIcon.Foreground = new SolidColorBrush(Colors.White);
+            GameLabel.Foreground = new SolidColorBrush(Colors.White);
+            MemberIcon.Foreground = new SolidColorBrush(Colors.White);
+            MemberLabel.Foreground = new SolidColorBrush(Colors.White);
+            FineIcon.Foreground = new SolidColorBrush(Colors.White);
+            FineLabel.Foreground = new SolidColorBrush(Colors.White);
+            RoleIcon.Foreground = new SolidColorBrush(Colors.White);
+            RoleLabel.Foreground = new SolidColorBrush(Colors.White);
+        }
     }
 }
