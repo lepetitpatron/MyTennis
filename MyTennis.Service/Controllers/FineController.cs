@@ -1,6 +1,6 @@
 ﻿using Microsoft.AspNetCore.Mvc;
-using MyTennis.BLL;
-using MyTennis.Core;
+using MyTennis.BLL.Logic;
+using MyTennis.Core.DTO;
 using System.Collections.Generic;
 using System.Net;
 using System.Net.Http;
@@ -9,40 +9,40 @@ namespace MyTennis.Service.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
-    public class RoleController : ControllerBase
+    public class FineController : ControllerBase
     {
-        private readonly RoleLogic logic;
+        private readonly FineLogic logic;
 
-        public RoleController()
+        public FineController()
         {
-            logic = new RoleLogic();
+            logic = new FineLogic();
         }
 
         [HttpGet]
-        public List<RoleDTO> GetRoles()
+        public List<FineDTO> GetFines()
         {
             return logic.GetAll();
         }
 
         [HttpGet("{id}")]
-        public RoleDTO GetRole(int id)
+        public FineDTO GetFine(int id)
         {
             return logic.FindById(id);
         }
 
         [HttpPut]
-        public HttpResponseMessage UpdateRole([FromBody] RoleDTO role)
+        public HttpResponseMessage UpdateFine([FromBody] FineDTO fine)
         {
-            if (logic.Update(role))
+            if (logic.Update(fine))
                 return new HttpResponseMessage(HttpStatusCode.OK);
             else
-                return new HttpResponseMessage(HttpStatusCode.NotFound);
+                return new HttpResponseMessage(HttpStatusCode.InternalServerError);
         }
 
         [HttpPost]
-        public HttpResponseMessage PostRole([FromBody] RoleDTO role)
+        public HttpResponseMessage PostRole([FromBody] FineDTO fine)
         {
-            if (logic.Create(role))
+            if (logic.Create(fine))
                 return new HttpResponseMessage(HttpStatusCode.OK);
             else
                 return new HttpResponseMessage(HttpStatusCode.InternalServerError);

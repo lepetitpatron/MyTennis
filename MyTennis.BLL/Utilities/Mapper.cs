@@ -1,6 +1,4 @@
 ﻿using AutoMapper;
-using MyTennis.Core.DTO;
-using MyTennis.DAL.Entities;
 using System;
 using System.Collections.Generic;
 

@@ -10,8 +10,8 @@ using MyTennis.DAL;
 namespace MyTennis.DAL.Migrations
 {
     [DbContext(typeof(MyTennisDBContext))]
-    [Migration("20201114221817_CreateDatabase_3")]
-    partial class CreateDatabase_3
+    [Migration("20201115160123_CreateDatabase_5")]
+    partial class CreateDatabase_5
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -40,7 +40,7 @@ namespace MyTennis.DAL.Migrations
                     b.Property<DateTime>("HandoutDate")
                         .HasColumnType("datetime2");
 
-                    b.Property<int?>("MemberId")
+                    b.Property<int>("MemberId")
                         .HasColumnType("int");
 
                     b.Property<DateTime>("PaymentDate")
@@ -347,7 +347,9 @@ namespace MyTennis.DAL.Migrations
                 {
                     b.HasOne("MyTennis.DAL.Entities.Member", "Member")
                         .WithMany()
-                        .HasForeignKey("MemberId");
+                        .HasForeignKey("MemberId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
                 });
 
             modelBuilder.Entity("MyTennis.DAL.Entities.Game", b =>

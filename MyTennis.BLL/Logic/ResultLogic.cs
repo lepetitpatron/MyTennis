@@ -21,7 +21,7 @@ namespace MyTennis.BLL.Logic
             throw new NotImplementedException();
         }
 
-        public bool Delete(int entity)
+        public bool Delete(int id)
         {
             throw new NotImplementedException();
         }

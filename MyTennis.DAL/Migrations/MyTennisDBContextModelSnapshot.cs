@@ -38,7 +38,7 @@ namespace MyTennis.DAL.Migrations
                     b.Property<DateTime>("HandoutDate")
                         .HasColumnType("datetime2");
 
-                    b.Property<int?>("MemberId")
+                    b.Property<int>("MemberId")
                         .HasColumnType("int");
 
                     b.Property<DateTime>("PaymentDate")
@@ -345,7 +345,9 @@ namespace MyTennis.DAL.Migrations
                 {
                     b.HasOne("MyTennis.DAL.Entities.Member", "Member")
                         .WithMany()
-                        .HasForeignKey("MemberId");
+                        .HasForeignKey("MemberId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
                 });
 
             modelBuilder.Entity("MyTennis.DAL.Entities.Game", b =>

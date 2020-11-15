@@ -3,7 +3,7 @@ using Microsoft.EntityFrameworkCore.Migrations;
 
 namespace MyTennis.DAL.Migrations
 {
-    public partial class CreateDatabase_3 : Migration
+    public partial class CreateDatabase_5 : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {
@@ -81,7 +81,7 @@ namespace MyTennis.DAL.Migrations
                     Id = table.Column<int>(nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
                     FineNumber = table.Column<int>(unicode: false, maxLength: 10, nullable: false),
-                    MemberId = table.Column<int>(nullable: true),
+                    MemberId = table.Column<int>(nullable: false),
                     Amount = table.Column<decimal>(type: "decimal(7,2)", unicode: false, nullable: false),
                     HandoutDate = table.Column<DateTime>(nullable: false),
                     PaymentDate = table.Column<DateTime>(nullable: false)
@@ -94,7 +94,7 @@ namespace MyTennis.DAL.Migrations
                         column: x => x.MemberId,
                         principalTable: "Member",
                         principalColumn: "Id",
-                        onDelete: ReferentialAction.Restrict);
+                        onDelete: ReferentialAction.Cascade);
                 });
 
             migrationBuilder.CreateTable(

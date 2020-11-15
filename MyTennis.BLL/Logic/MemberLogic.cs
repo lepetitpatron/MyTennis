@@ -1,5 +1,4 @@
-﻿using AutoMapper;
-using MyTennis.BLL.Utilities;
+﻿using MyTennis.BLL.Utilities;
 using MyTennis.Core.DTO;
 using MyTennis.DAL;
 using MyTennis.DAL.Entities;

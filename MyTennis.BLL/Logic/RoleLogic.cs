@@ -33,9 +33,9 @@ namespace MyTennis.BLL
             {
                 return Utilities.Mapper.Map<Role, RoleDTO>(repository.FindById(id));
             }
-            catch (Exception e)
+            catch (Exception)
             {
-                throw new Exception(e.Message);
+                throw new Exception();
             }
         }
 
@@ -45,9 +45,9 @@ namespace MyTennis.BLL
             {
                 return Utilities.Mapper.MapList<Role, RoleDTO>(repository.GetAll());
             }
-            catch (Exception e)
+            catch (Exception)
             {
-                throw new Exception(e.Message);
+                throw new Exception();
             }
         }
 

@@ -25,33 +25,7 @@ namespace MyTennis.UI.Views
             ApiHelper.InitializeClient();
         }
 
-        private async void Button_Click(object sender, RoutedEventArgs e)
-        {
-            MemberDTO member = new MemberDTO()
-            {
-                FederationNr = "1111",
-                FirstName = "Hamza",
-                LastName = "Menouny",
-                BirthDate = DateTime.Now,
-                GenderId = 1,
-                Address = "fzqfq",
-                Number = "000000",
-                Addition = "X",
-                Zipcode = "X",
-                City = "Antwerp",
-                PhoneNr = "20000",
-                IsActive = true,
-               // MemberRoles = new List<MemberRoleDTO>()
-            };
-
-            MembersProcessor processor = new MembersProcessor();
-
-            bool hmm = await processor.Add(member);
-
-            if (hmm)
-                MessageBox.Show("OMG");
-            else
-                MessageBox.Show("Sike");
-        }
+        private void Button_Click(object sender, RoutedEventArgs e)
+        { }
     }
 }

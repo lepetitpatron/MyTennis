@@ -6,7 +6,7 @@ namespace MyTennis.BLL
     {
         bool Create(TEntity entity);
         TEntity FindById(int id);
-        bool Delete(int entity);
+        bool Delete(int id);
         List<TEntity> GetAll();
         bool Update(TEntity entity);
     }
