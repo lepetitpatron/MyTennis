@@ -5,7 +5,6 @@ namespace MyTennis.DAL.Entities
 {
     public class League
     {
-        [Key, DatabaseGenerated(DatabaseGeneratedOption.Identity)]
         public byte Id { get; set; }
         public string Name { get; set; }
     }

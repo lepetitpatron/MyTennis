@@ -3,7 +3,7 @@ using Microsoft.EntityFrameworkCore.Migrations;
 
 namespace MyTennis.DAL.Migrations
 {
-    public partial class CreateDatabase : Migration
+    public partial class CreateDatabase_3 : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {
@@ -23,8 +23,7 @@ namespace MyTennis.DAL.Migrations
                 name: "League",
                 columns: table => new
                 {
-                    Id = table.Column<byte>(nullable: false)
-                        .Annotation("SqlServer:Identity", "1, 1"),
+                    Id = table.Column<byte>(nullable: false),
                     Name = table.Column<string>(unicode: false, maxLength: 20, nullable: false)
                 },
                 constraints: table =>
@@ -55,7 +54,7 @@ namespace MyTennis.DAL.Migrations
                     FirstName = table.Column<string>(unicode: false, maxLength: 25, nullable: false),
                     LastName = table.Column<string>(unicode: false, maxLength: 35, nullable: false),
                     BirthDate = table.Column<DateTime>(nullable: false),
-                    GenderId = table.Column<byte>(nullable: true),
+                    GenderId = table.Column<byte>(nullable: false),
                     Address = table.Column<string>(unicode: false, maxLength: 70, nullable: false),
                     Number = table.Column<string>(unicode: false, maxLength: 6, nullable: false),
                     Addition = table.Column<string>(unicode: false, maxLength: 2, nullable: true),
@@ -72,7 +71,7 @@ namespace MyTennis.DAL.Migrations
                         column: x => x.GenderId,
                         principalTable: "Gender",
                         principalColumn: "Id",
-                        onDelete: ReferentialAction.Restrict);
+                        onDelete: ReferentialAction.Cascade);
                 });
 
             migrationBuilder.CreateTable(
@@ -183,6 +182,16 @@ namespace MyTennis.DAL.Migrations
                 {
                     { (byte)1, "Man" },
                     { (byte)2, "Vrouw" }
+                });
+
+            migrationBuilder.InsertData(
+                table: "League",
+                columns: new[] { "Id", "Name" },
+                values: new object[,]
+                {
+                    { (byte)1, "Recreatief" },
+                    { (byte)2, "Competitie" },
+                    { (byte)3, "Toptennis" }
                 });
 
             migrationBuilder.InsertData(

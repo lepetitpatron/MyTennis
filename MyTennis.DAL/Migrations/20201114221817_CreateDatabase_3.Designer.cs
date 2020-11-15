@@ -10,8 +10,8 @@ using MyTennis.DAL;
 namespace MyTennis.DAL.Migrations
 {
     [DbContext(typeof(MyTennisDBContext))]
-    [Migration("20201104163735_CreateDatabase")]
-    partial class CreateDatabase
+    [Migration("20201114221817_CreateDatabase_3")]
+    partial class CreateDatabase_3
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -124,9 +124,7 @@ namespace MyTennis.DAL.Migrations
             modelBuilder.Entity("MyTennis.DAL.Entities.League", b =>
                 {
                     b.Property<byte>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("tinyint")
-                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+                        .HasColumnType("tinyint");
 
                     b.Property<string>("Name")
                         .IsRequired()
@@ -140,6 +138,23 @@ namespace MyTennis.DAL.Migrations
                         .IsUnique();
 
                     b.ToTable("League");
+
+                    b.HasData(
+                        new
+                        {
+                            Id = (byte)1,
+                            Name = "Recreatief"
+                        },
+                        new
+                        {
+                            Id = (byte)2,
+                            Name = "Competitie"
+                        },
+                        new
+                        {
+                            Id = (byte)3,
+                            Name = "Toptennis"
+                        });
                 });
 
             modelBuilder.Entity("MyTennis.DAL.Entities.Member", b =>
@@ -181,7 +196,7 @@ namespace MyTennis.DAL.Migrations
                         .HasMaxLength(25)
                         .IsUnicode(false);
 
-                    b.Property<byte?>("GenderId")
+                    b.Property<byte>("GenderId")
                         .HasColumnType("tinyint");
 
                     b.Property<bool>("IsActive")
@@ -350,7 +365,9 @@ namespace MyTennis.DAL.Migrations
                 {
                     b.HasOne("MyTennis.DAL.Entities.Gender", "Gender")
                         .WithMany()
-                        .HasForeignKey("GenderId");
+                        .HasForeignKey("GenderId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
                 });
 
             modelBuilder.Entity("MyTennis.DAL.Entities.MemberRole", b =>

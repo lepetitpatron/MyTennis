@@ -1,5 +1,6 @@
 ﻿using MyTennis.Core.DTO;
 using MyTennis.UI.Processors;
+using MyTennis.UI.Views;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -103,6 +104,13 @@ namespace MyTennis.UI
             FineLabel.Foreground = new SolidColorBrush(Colors.White);
             RoleIcon.Foreground = new SolidColorBrush(Colors.White);
             RoleLabel.Foreground = new SolidColorBrush(Colors.White);
+        }
+
+        private void RoleIcon_MouseDown(object sender, MouseButtonEventArgs e)
+        {
+            Window window = new RoleWindow();
+            this.Hide();
+            window.ShowDialog();
         }
     }
 }

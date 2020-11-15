@@ -1,4 +1,7 @@
 ﻿using AutoMapper;
+using MyTennis.Core.DTO;
+using MyTennis.DAL.Entities;
+using System;
 using System.Collections.Generic;
 
 namespace MyTennis.BLL.Utilities
@@ -7,7 +10,7 @@ namespace MyTennis.BLL.Utilities
     {
         internal static TDestination Map<TSource, TDestination>(TSource objectToMap)
         {
-            MapperConfiguration config = new MapperConfiguration(cfg => cfg.CreateMap<TSource, TDestination>());
+            MapperConfiguration config = new MapperConfiguration(cfg => cfg.CreateMap<TSource, TDestination>().ReverseMap());
             IMapper mapper = config.CreateMapper();
 
             return mapper.Map<TDestination>(objectToMap);
@@ -23,5 +26,21 @@ namespace MyTennis.BLL.Utilities
 
             return items;
         }
+    }
+
+    public static class ObjectMapper
+    {
+        private static readonly Lazy<IMapper> Lazy = new Lazy<IMapper>(() => 
+        {
+            MapperConfiguration config = new MapperConfiguration(cfg => {
+                cfg.ShouldMapProperty = p => p.GetMethod.IsPublic || p.GetMethod.IsAssembly;
+                cfg.AddProfile<MapperProfile>();
+            });
+
+            IMapper mapper = config.CreateMapper();
+            return mapper;
+        });
+
+        public static IMapper Mapper => Lazy.Value;
     }
 }

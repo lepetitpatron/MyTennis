@@ -22,7 +22,7 @@
             <!-- Color -->
             <Rectangle Grid.Row="0" Fill="Turquoise"/>
             <Rectangle Grid.Row="1" Fill="Turquoise"/>
-            <Rectangle Grid.Row="2" Fill="Turquoise" MouseEnter="Rectangle_MouseEnter"/>
+            <Rectangle Grid.Row="2" Fill="Turquoise" MouseEnter="Rectangle_MouseEnter" Height="150" VerticalAlignment="Top"/>
             <Rectangle Grid.Row="3" Fill="Turquoise" MouseEnter="Rectangle_MouseEnter_1"/>
             <Rectangle Grid.Row="4" Fill="Turquoise"/>
             <Rectangle Grid.Row="5" Fill="Turquoise"/>
@@ -34,7 +34,7 @@
                 <iconPacks:PackIconFontAwesome x:Name="GameIcon" Kind="TableTennisSolid" Foreground="White" Margin="30,0,30,0" Width="85" Height="85" Cursor="Hand" MouseEnter="GameIcon_MouseEnter"/>
                 <iconPacks:PackIconFontAwesome x:Name="MemberIcon" Kind="UserAltSolid" Foreground="White" Margin="30,0,30,0" Width="85" Height="85" Cursor="Hand" MouseEnter="MemberIcon_MouseEnter"/>
                 <iconPacks:PackIconFontAwesome x:Name="FineIcon" Kind="ReceiptSolid" Foreground="White" Margin="30,0,30,0" Width="85" Height="85" Cursor="Hand" MouseEnter="FineIcon_MouseEnter"/>
-                <iconPacks:PackIconFontAwesome x:Name="RoleIcon" Kind="IdBadgeSolid" Foreground="White" Margin="30,0,30,0" Width="85" Height="85" Cursor="Hand" MouseEnter="RoleIcon_MouseEnter"/>
+                <iconPacks:PackIconFontAwesome x:Name="RoleIcon" Kind="IdBadgeSolid" Foreground="White" Margin="30,0,30,0" Width="85" Height="85" Cursor="Hand" MouseDown="RoleIcon_MouseDown"/>
 
             </StackPanel>
             

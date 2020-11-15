@@ -1,9 +1,9 @@
 ﻿using System;
 using System.Collections.Generic;
 
-namespace MyTennis.DAL.Entities
+namespace MyTennis.Core.DTO
 {
-    public class Member
+    public class MemberDTO
     {
         public int Id { get; set; }
         public string FederationNr { get; set; }
@@ -11,7 +11,6 @@ namespace MyTennis.DAL.Entities
         public string LastName { get; set; }
         public DateTime BirthDate { get; set; }
         public byte GenderId { get; set; }
-        public Gender Gender { get; set; }
         public string Address { get; set; }
         public string Number { get; set; }
         public string Addition { get; set; }
@@ -19,6 +18,6 @@ namespace MyTennis.DAL.Entities
         public string City { get; set; }
         public string PhoneNr { get; set; }
         public bool IsActive { get; set; }
-        public IList<MemberRole> MemberRoles { get; set; }
+        //public IList<MemberRoleDTO> MemberRoles { get; set; }
     }
 }
