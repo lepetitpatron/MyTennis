@@ -1,12 +1,14 @@
-﻿using MyTennis.Core.DTO;
+﻿using MyTennis.BLL.Utilities;
+using MyTennis.Core.DTO;
 using MyTennis.DAL;
+using MyTennis.DAL.Entities;
 using MyTennis.DAL.Repositories;
 using System;
 using System.Collections.Generic;
 
 namespace MyTennis.BLL.Logic
 {
-    class GameLogic : ILogic<GameDTO>
+    public class GameLogic : ILogic<GameDTO>
     {
         private readonly MyTennisDBContext _context = new MyTennisDBContext();
         private readonly GameRepository repository;
@@ -18,27 +20,41 @@ namespace MyTennis.BLL.Logic
 
         public bool Create(GameDTO entity)
         {
-            throw new NotImplementedException();
+            return repository.Add(ObjectMapper.Mapper.Map<Game>(entity));
         }
 
         public bool Delete(int id)
         {
-            throw new NotImplementedException();
+            return repository.Remove(id);
         }
 
         public GameDTO FindById(int id)
         {
-            throw new NotImplementedException();
+            try
+            {
+                return ObjectMapper.Mapper.Map<GameDTO>(repository.FindById(id));
+            }
+            catch (Exception)
+            {
+                throw new Exception();
+            }
         }
 
         public List<GameDTO> GetAll()
         {
-            throw new NotImplementedException();
+            try
+            {
+                return ObjectMapper.Mapper.Map<List<GameDTO>>(repository.GetAll());
+            }
+            catch (Exception)
+            {
+                throw new Exception();
+            }
         }
 
         public bool Update(GameDTO entity)
         {
-            throw new NotImplementedException();
+            return repository.Modify(ObjectMapper.Mapper.Map<Game>(entity));
         }
     }
 }

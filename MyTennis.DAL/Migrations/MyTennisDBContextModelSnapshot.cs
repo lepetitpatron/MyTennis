@@ -70,10 +70,10 @@ namespace MyTennis.DAL.Migrations
                         .HasMaxLength(10)
                         .IsUnicode(false);
 
-                    b.Property<byte?>("LeagueId")
+                    b.Property<byte>("LeagueId")
                         .HasColumnType("tinyint");
 
-                    b.Property<int?>("MemberId")
+                    b.Property<int>("MemberId")
                         .HasColumnType("int");
 
                     b.HasKey("Id");
@@ -268,7 +268,7 @@ namespace MyTennis.DAL.Migrations
                         .HasColumnType("int")
                         .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
-                    b.Property<int?>("GameId")
+                    b.Property<int>("GameId")
                         .HasColumnType("int");
 
                     b.Property<byte>("ScoreOpponent")
@@ -354,11 +354,15 @@ namespace MyTennis.DAL.Migrations
                 {
                     b.HasOne("MyTennis.DAL.Entities.League", "League")
                         .WithMany()
-                        .HasForeignKey("LeagueId");
+                        .HasForeignKey("LeagueId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
 
                     b.HasOne("MyTennis.DAL.Entities.Member", "Member")
                         .WithMany()
-                        .HasForeignKey("MemberId");
+                        .HasForeignKey("MemberId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
                 });
 
             modelBuilder.Entity("MyTennis.DAL.Entities.Member", b =>
@@ -389,7 +393,9 @@ namespace MyTennis.DAL.Migrations
                 {
                     b.HasOne("MyTennis.DAL.Entities.Game", "Game")
                         .WithMany()
-                        .HasForeignKey("GameId");
+                        .HasForeignKey("GameId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
                 });
 #pragma warning restore 612, 618
         }

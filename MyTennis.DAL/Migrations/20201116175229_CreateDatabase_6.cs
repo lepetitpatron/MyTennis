@@ -3,7 +3,7 @@ using Microsoft.EntityFrameworkCore.Migrations;
 
 namespace MyTennis.DAL.Migrations
 {
-    public partial class CreateDatabase_5 : Migration
+    public partial class CreateDatabase_6 : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {
@@ -104,8 +104,8 @@ namespace MyTennis.DAL.Migrations
                     Id = table.Column<int>(nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
                     GameNumber = table.Column<string>(unicode: false, maxLength: 10, nullable: false),
-                    MemberId = table.Column<int>(nullable: true),
-                    LeagueId = table.Column<byte>(nullable: true),
+                    MemberId = table.Column<int>(nullable: false),
+                    LeagueId = table.Column<byte>(nullable: false),
                     Date = table.Column<DateTime>(nullable: false)
                 },
                 constraints: table =>
@@ -116,13 +116,13 @@ namespace MyTennis.DAL.Migrations
                         column: x => x.LeagueId,
                         principalTable: "League",
                         principalColumn: "Id",
-                        onDelete: ReferentialAction.Restrict);
+                        onDelete: ReferentialAction.Cascade);
                     table.ForeignKey(
                         name: "FK_Game_Member_MemberId",
                         column: x => x.MemberId,
                         principalTable: "Member",
                         principalColumn: "Id",
-                        onDelete: ReferentialAction.Restrict);
+                        onDelete: ReferentialAction.Cascade);
                 });
 
             migrationBuilder.CreateTable(
@@ -159,7 +159,7 @@ namespace MyTennis.DAL.Migrations
                 {
                     Id = table.Column<int>(nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
-                    GameId = table.Column<int>(nullable: true),
+                    GameId = table.Column<int>(nullable: false),
                     SetNr = table.Column<byte>(unicode: false, maxLength: 3, nullable: false),
                     ScoreTeamMember = table.Column<byte>(unicode: false, maxLength: 3, nullable: false),
                     ScoreOpponent = table.Column<byte>(unicode: false, maxLength: 3, nullable: false)
@@ -172,7 +172,7 @@ namespace MyTennis.DAL.Migrations
                         column: x => x.GameId,
                         principalTable: "Game",
                         principalColumn: "Id",
-                        onDelete: ReferentialAction.Restrict);
+                        onDelete: ReferentialAction.Cascade);
                 });
 
             migrationBuilder.InsertData(
