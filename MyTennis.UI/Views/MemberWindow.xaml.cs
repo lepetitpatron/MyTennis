@@ -25,36 +25,7 @@ namespace MyTennis.UI.Views
             ApiHelper.InitializeClient();
         }
 
-        private async void Button_Click(object sender, RoutedEventArgs e)
-        {
-            MembersProcessor membersProcessor = new MembersProcessor();
-            GamesProcessor gamesProcessor = new GamesProcessor();
-            
-            MemberDTO member = new MemberDTO()
-            {
-                FederationNr = "EFGH",
-                FirstName = "Chenno",
-                LastName = "Wenno",
-                BirthDate = new DateTime(2007, 04, 18),
-                GenderId = 1,
-                Address = "Julius de Geyterstraat",
-                Number = "000002",
-                Addition = "XX",
-                Zipcode = "2020",
-                City = "Barcelona",
-                PhoneNr = "0456332158",
-                IsActive = true
-            };
-
-            GameDTO game = new GameDTO()
-            {
-                Id = 2,
-                GameNumber = "000000002",
-                MemberId = 3,
-                LeagueId = 2,
-                Date = new DateTime(2019,11,16)
-            };
-            MessageBox.Show(await gamesProcessor.Update(game) + "");
-        }
+        private void Button_Click(object sender, RoutedEventArgs e)
+        { }
     }
 }

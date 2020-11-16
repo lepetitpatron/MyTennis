@@ -1,6 +1,8 @@
-﻿using MyTennis.DAL.Entities;
+﻿using Microsoft.EntityFrameworkCore.ChangeTracking;
+using MyTennis.DAL.Entities;
 using System;
 using System.Collections.Generic;
+using System.Linq;
 
 namespace MyTennis.DAL.Repositories
 {
@@ -15,27 +17,47 @@ namespace MyTennis.DAL.Repositories
 
         public bool Add(Result t)
         {
-            throw new NotImplementedException();
+            try
+            {
+                _context.Results.Add(t);
+                _context.SaveChanges();
+
+                return true;
+            }
+            catch (Exception)
+            {
+                return false;
+            }
         }
 
         public Result FindById(int id)
         {
-            throw new NotImplementedException();
+            return _context.Set<Result>().SingleOrDefault(e => e.Id == id);
         }
 
         public List<Result> GetAll()
         {
-            throw new NotImplementedException();
+            IQueryable<Result> query = _context.Set<Result>();
+            IEnumerable<Result> result = query.ToList();
+
+            return result.ToList();
         }
 
         public bool Modify(Result t)
         {
-            throw new NotImplementedException();
+            Result entity = _context.Results.Where(e => e.Id == t.Id).FirstOrDefault();
+            if (entity == null) return false;
+
+            EntityEntry entry = _context.Entry(entity);
+            entry.CurrentValues.SetValues(t);
+            _context.SaveChanges();
+
+            return true;
         }
 
         public bool Remove(int id)
         {
-            throw new NotImplementedException();
+            return false;
         }
     }
 }

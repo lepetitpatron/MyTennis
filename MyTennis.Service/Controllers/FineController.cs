@@ -40,7 +40,7 @@ namespace MyTennis.Service.Controllers
         }
 
         [HttpPost]
-        public HttpResponseMessage PostRole([FromBody] FineDTO fine)
+        public HttpResponseMessage PostFine([FromBody] FineDTO fine)
         {
             if (logic.Create(fine))
                 return new HttpResponseMessage(HttpStatusCode.OK);

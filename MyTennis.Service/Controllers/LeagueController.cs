@@ -31,7 +31,7 @@ namespace MyTennis.Service.Controllers
         }
 
         [HttpPut]
-        public HttpResponseMessage UpdateRole([FromBody] LeagueDTO role)
+        public HttpResponseMessage UpdateLeague([FromBody] LeagueDTO role)
         {
             if (logic.Update(role))
                 return new HttpResponseMessage(HttpStatusCode.OK);
@@ -40,7 +40,7 @@ namespace MyTennis.Service.Controllers
         }
 
         [HttpPost]
-        public HttpResponseMessage PostRole([FromBody] LeagueDTO role)
+        public HttpResponseMessage PostLeague([FromBody] LeagueDTO role)
         {
             if (logic.Create(role))
                 return new HttpResponseMessage(HttpStatusCode.OK);
@@ -49,7 +49,7 @@ namespace MyTennis.Service.Controllers
         }
 
         [HttpDelete("{id}")]
-        public HttpResponseMessage DeleteRole(int id)
+        public HttpResponseMessage DeleteLeague(int id)
         {
             if (logic.Delete(id))
                 return new HttpResponseMessage(HttpStatusCode.OK);

@@ -9,49 +9,40 @@ namespace MyTennis.Service.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
-    public class GameController : ControllerBase
+    public class ResultController : ControllerBase
     {
-        private readonly GameLogic logic;
+        private readonly ResultLogic logic;
 
-        public GameController()
+        public ResultController()
         {
-            logic = new GameLogic();
+            logic = new ResultLogic();
         }
 
         [HttpGet]
-        public List<GameDTO> GetGames()
+        public List<ResultDTO> GetResults()
         {
             return logic.GetAll();
         }
 
         [HttpGet("{id}")]
-        public GameDTO GetGame(int id)
+        public ResultDTO GetResult(int id)
         {
             return logic.FindById(id);
         }
 
         [HttpPut]
-        public HttpResponseMessage UpdateGame([FromBody] GameDTO game)
+        public HttpResponseMessage UpdateResult([FromBody] ResultDTO result)
         {
-            if (logic.Update(game))
+            if (logic.Update(result))
                 return new HttpResponseMessage(HttpStatusCode.OK);
             else
                 return new HttpResponseMessage(HttpStatusCode.InternalServerError);
         }
 
         [HttpPost]
-        public HttpResponseMessage PostGame([FromBody] GameDTO game)
+        public HttpResponseMessage PostResult([FromBody] ResultDTO result)
         {
-            if (logic.Create(game))
-                return new HttpResponseMessage(HttpStatusCode.OK);
-            else
-                return new HttpResponseMessage(HttpStatusCode.InternalServerError);
-        }
-
-        [HttpDelete("{id}")]
-        public HttpResponseMessage DeleteGame(int id)
-        {
-            if (logic.Delete(id))
+            if (logic.Create(result))
                 return new HttpResponseMessage(HttpStatusCode.OK);
             else
                 return new HttpResponseMessage(HttpStatusCode.InternalServerError);

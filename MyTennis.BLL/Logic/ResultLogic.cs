@@ -1,12 +1,14 @@
-﻿using MyTennis.Core.DTO;
+﻿using MyTennis.BLL.Utilities;
+using MyTennis.Core.DTO;
 using MyTennis.DAL;
+using MyTennis.DAL.Entities;
 using MyTennis.DAL.Repositories;
 using System;
 using System.Collections.Generic;
 
 namespace MyTennis.BLL.Logic
 {
-    class ResultLogic : ILogic<ResultDTO>
+    public class ResultLogic : ILogic<ResultDTO>
     {
         private readonly MyTennisDBContext _context = new MyTennisDBContext();
         private readonly ResultRepository repository;
@@ -18,27 +20,41 @@ namespace MyTennis.BLL.Logic
 
         public bool Create(ResultDTO entity)
         {
-            throw new NotImplementedException();
+            return repository.Add(ObjectMapper.Mapper.Map<Result>(entity));
         }
 
         public bool Delete(int id)
         {
-            throw new NotImplementedException();
+            return repository.Remove(id);
         }
 
         public ResultDTO FindById(int id)
         {
-            throw new NotImplementedException();
+            try
+            {
+                return ObjectMapper.Mapper.Map<ResultDTO>(repository.FindById(id));
+            }
+            catch (Exception)
+            {
+                throw new Exception();
+            }
         }
 
         public List<ResultDTO> GetAll()
         {
-            throw new NotImplementedException();
+            try
+            {
+                return ObjectMapper.Mapper.Map<List<ResultDTO>>(repository.GetAll());
+            }
+            catch (Exception)
+            {
+                throw new Exception();
+            }
         }
 
         public bool Update(ResultDTO entity)
         {
-            throw new NotImplementedException();
+            return repository.Modify(ObjectMapper.Mapper.Map<Result>(entity));
         }
     }
 }
