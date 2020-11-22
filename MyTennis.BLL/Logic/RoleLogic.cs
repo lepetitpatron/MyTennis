@@ -1,4 +1,5 @@
-﻿using MyTennis.Core;
+﻿using MyTennis.BLL.Utilities;
+using MyTennis.Core.DTO;
 using MyTennis.DAL;
 using MyTennis.DAL.Entities;
 using MyTennis.DAL.Repositories;
@@ -19,7 +20,7 @@ namespace MyTennis.BLL
 
         public bool Create(RoleDTO entity)
         {
-            return repository.Add(Utilities.Mapper.Map<RoleDTO, Role>(entity));
+            return repository.Add(ObjectMapper.Mapper.Map<Role>(entity));
         }
 
         public bool Delete(int id)
@@ -31,7 +32,7 @@ namespace MyTennis.BLL
         {
             try
             {
-                return Utilities.Mapper.Map<Role, RoleDTO>(repository.FindById(id));
+                return ObjectMapper.Mapper.Map<RoleDTO>(repository.FindById(id));
             }
             catch (Exception)
             {
@@ -43,17 +44,17 @@ namespace MyTennis.BLL
         {
             try
             {
-                return Utilities.Mapper.MapList<Role, RoleDTO>(repository.GetAll());
+                return ObjectMapper.Mapper.Map<List<RoleDTO>>(repository.GetAll());
             }
-            catch (Exception)
+            catch (Exception ex)
             {
-                throw new Exception();
+                throw new Exception(ex.Message);
             }
         }
 
         public bool Update(RoleDTO entity)
         {
-            return repository.Modify(Utilities.Mapper.Map<RoleDTO, Role>(entity));
+            return repository.Modify(ObjectMapper.Mapper.Map<Role>(entity));
         }
     }
 }

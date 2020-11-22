@@ -1,4 +1,4 @@
-﻿using MyTennis.Core;
+﻿using MyTennis.Core.DTO;
 using MyTennis.UI.Processors;
 using Newtonsoft.Json;
 using System.Collections.Generic;

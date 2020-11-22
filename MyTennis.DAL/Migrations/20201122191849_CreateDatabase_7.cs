@@ -3,7 +3,7 @@ using Microsoft.EntityFrameworkCore.Migrations;
 
 namespace MyTennis.DAL.Migrations
 {
-    public partial class CreateDatabase_6 : Migration
+    public partial class CreateDatabase_7 : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {

@@ -377,13 +377,13 @@ namespace MyTennis.DAL.Migrations
             modelBuilder.Entity("MyTennis.DAL.Entities.MemberRole", b =>
                 {
                     b.HasOne("MyTennis.DAL.Entities.Member", "Member")
-                        .WithMany("MemberRoles")
+                        .WithMany()
                         .HasForeignKey("MemberId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
                     b.HasOne("MyTennis.DAL.Entities.Role", "Role")
-                        .WithMany("MemberRoles")
+                        .WithMany()
                         .HasForeignKey("RoleId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();

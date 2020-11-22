@@ -23,6 +23,8 @@
     <Compile Remove="Migrations\20201114221711_CreateDatabase_2.Designer.cs" />
     <Compile Remove="Migrations\20201115160123_CreateDatabase_5.cs" />
     <Compile Remove="Migrations\20201115160123_CreateDatabase_5.Designer.cs" />
+    <Compile Remove="Migrations\20201116175229_CreateDatabase_6.cs" />
+    <Compile Remove="Migrations\20201116175229_CreateDatabase_6.Designer.cs" />
   </ItemGroup>
 
   <ItemGroup>
@@ -32,6 +34,10 @@
       <PrivateAssets>all</PrivateAssets>
       <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
     </PackageReference>
+  </ItemGroup>
+
+  <ItemGroup>
+    <Folder Include="Migrations\" />
   </ItemGroup>
 
 </Project>

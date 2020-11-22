@@ -1,6 +1,6 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using MyTennis.BLL;
-using MyTennis.Core;
+using MyTennis.Core.DTO;
 using System.Collections.Generic;
 using System.Net;
 using System.Net.Http;

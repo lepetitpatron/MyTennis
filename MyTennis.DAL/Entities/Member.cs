@@ -1,5 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
 
 namespace MyTennis.DAL.Entities
 {
@@ -19,6 +18,5 @@ namespace MyTennis.DAL.Entities
         public string City { get; set; }
         public string PhoneNr { get; set; }
         public bool IsActive { get; set; }
-        public IList<MemberRole> MemberRoles { get; set; }
     }
 }

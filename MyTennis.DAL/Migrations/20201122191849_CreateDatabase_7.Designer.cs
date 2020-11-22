@@ -10,8 +10,8 @@ using MyTennis.DAL;
 namespace MyTennis.DAL.Migrations
 {
     [DbContext(typeof(MyTennisDBContext))]
-    [Migration("20201116175229_CreateDatabase_6")]
-    partial class CreateDatabase_6
+    [Migration("20201122191849_CreateDatabase_7")]
+    partial class CreateDatabase_7
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -379,13 +379,13 @@ namespace MyTennis.DAL.Migrations
             modelBuilder.Entity("MyTennis.DAL.Entities.MemberRole", b =>
                 {
                     b.HasOne("MyTennis.DAL.Entities.Member", "Member")
-                        .WithMany("MemberRoles")
+                        .WithMany()
                         .HasForeignKey("MemberId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
                     b.HasOne("MyTennis.DAL.Entities.Role", "Role")
-                        .WithMany("MemberRoles")
+                        .WithMany()
                         .HasForeignKey("RoleId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();

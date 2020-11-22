@@ -20,29 +20,28 @@
             </Grid.RowDefinitions>
             
             <!-- Color -->
-            <Rectangle Grid.Row="0" Fill="Turquoise"/>
-            <Rectangle Grid.Row="1" Fill="Turquoise"/>
-            <Rectangle Grid.Row="2" Fill="Turquoise" MouseEnter="Rectangle_MouseEnter" Height="150" VerticalAlignment="Top"/>
-            <Rectangle Grid.Row="3" Fill="Turquoise" MouseEnter="Rectangle_MouseEnter_1"/>
-            <Rectangle Grid.Row="4" Fill="Turquoise"/>
-            <Rectangle Grid.Row="5" Fill="Turquoise"/>
+            <Rectangle Grid.Row="0" Fill="DarkRed"/>
+            <Rectangle Grid.Row="1" Fill="DarkRed"/>
+            <Rectangle Grid.Row="2" Fill="DarkRed" Height="150" VerticalAlignment="Top"/>
+            <Rectangle Grid.Row="3" Fill="DarkRed"/>
+            <Rectangle Grid.Row="4" Fill="DarkRed"/>
+            <Rectangle Grid.Row="5" Fill="DarkRed"/>
             
             <!-- Content -->
             <TextBlock Text="MyTennis" Grid.Row="5" VerticalAlignment="Center" Margin="20,0,0,0" FontSize="18" FontWeight="Normal" Foreground="White"/>
 
             <StackPanel Grid.Row="2" Orientation="Horizontal" HorizontalAlignment="Center" VerticalAlignment="Center">
-                <iconPacks:PackIconFontAwesome x:Name="GameIcon" Kind="TableTennisSolid" Foreground="White" Margin="30,0,30,0" Width="85" Height="85" Cursor="Hand" MouseEnter="GameIcon_MouseEnter"/>
-                <iconPacks:PackIconFontAwesome x:Name="MemberIcon" Kind="UserAltSolid" Foreground="White" Margin="30,0,30,0" Width="85" Height="85" Cursor="Hand" MouseEnter="MemberIcon_MouseEnter"/>
-                <iconPacks:PackIconFontAwesome x:Name="FineIcon" Kind="ReceiptSolid" Foreground="White" Margin="30,0,30,0" Width="85" Height="85" Cursor="Hand" MouseEnter="FineIcon_MouseEnter"/>
+                <iconPacks:PackIconFontAwesome x:Name="GameIcon" Kind="TableTennisSolid" Foreground="White" Margin="30,0,30,0" Width="85" Height="85" Cursor="Hand"/>
+                <iconPacks:PackIconFontAwesome x:Name="MemberIcon" Kind="UserAltSolid" Foreground="White" Margin="30,0,30,0" Width="85" Height="85" Cursor="Hand"/>
+                <iconPacks:PackIconFontAwesome x:Name="FineIcon" Kind="ReceiptSolid" Foreground="White" Margin="30,0,30,0" Width="85" Height="85" Cursor="Hand"/>
                 <iconPacks:PackIconFontAwesome x:Name="RoleIcon" Kind="IdBadgeSolid" Foreground="White" Margin="30,0,30,0" Width="85" Height="85" Cursor="Hand" MouseDown="RoleIcon_MouseDown"/>
-
             </StackPanel>
             
             <StackPanel Grid.Row="3" Orientation="Horizontal" HorizontalAlignment="Center" VerticalAlignment="Center">
-                <TextBlock x:Name="GameLabel" Text="Wedstrijden" Margin="30,0,30,0" FontSize="16" Width="85" TextAlignment="Center" Foreground="White" Cursor="Hand" MouseEnter="GameLabel_MouseEnter" />
-                <TextBlock x:Name="MemberLabel" Text="Leden" Margin="30,0,30,0" FontSize="16" Width="85" TextAlignment="Center" Foreground="White" Cursor="Hand" MouseEnter="MemberLabel_MouseEnter"/>
-                <TextBlock x:Name="FineLabel" Text="Boetes" Margin="30,0,30,0" FontSize="16" Width="85" TextAlignment="Center" Foreground="White" Cursor="Hand" MouseEnter="FineLabel_MouseEnter"/>
-                <TextBlock x:Name="RoleLabel" Text="Rollen" Margin="30,0,30,0" FontSize="16" Width="85" TextAlignment="Center" Foreground="White" Cursor="Hand" MouseEnter="RoleLabel_MouseEnter"/>
+                <TextBlock x:Name="GameLabel" Text="Wedstrijden" Margin="30,0,30,0" FontSize="16" Width="85" TextAlignment="Center" Foreground="White" Cursor="Hand"/>
+                <TextBlock x:Name="MemberLabel" Text="Leden" Margin="30,0,30,0" FontSize="16" Width="85" TextAlignment="Center" Foreground="White" Cursor="Hand"/>
+                <TextBlock x:Name="FineLabel" Text="Boetes" Margin="30,0,30,0" FontSize="16" Width="85" TextAlignment="Center" Foreground="White" Cursor="Hand"/>
+                <TextBlock x:Name="RoleLabel" Text="Rollen" Margin="30,0,30,0" FontSize="16" Width="85" TextAlignment="Center" Foreground="White" Cursor="Hand"/>
             </StackPanel>
         </Grid>
     </Grid>
