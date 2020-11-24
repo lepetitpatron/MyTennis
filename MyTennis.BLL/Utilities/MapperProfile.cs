@@ -14,6 +14,7 @@ namespace MyTennis.BLL.Utilities
             CreateMap<Game, GameDTO>().ReverseMap();
             CreateMap<Result, ResultDTO>().ReverseMap();
             CreateMap<Role, RoleDTO>().ReverseMap();
+            CreateMap<League, LeagueDTO>().ReverseMap();
         }
     }
 }

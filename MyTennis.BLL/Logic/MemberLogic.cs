@@ -23,24 +23,38 @@ namespace MyTennis.BLL.Logic
             return repository.Add(ObjectMapper.Mapper.Map<Member>(entity));
         }
 
-        public bool Delete(int entity)
+        public bool Delete(int id)
         {
-            throw new NotImplementedException();
+            return repository.Remove(id);
         }
 
         public MemberDTO FindById(int id)
         {
-            throw new NotImplementedException();
+            try
+            {
+                return ObjectMapper.Mapper.Map<MemberDTO>(repository.FindById(id));
+            }
+            catch (Exception)
+            {
+                throw new Exception();
+            }
         }
 
         public List<MemberDTO> GetAll()
         {
-            throw new NotImplementedException();
+            try
+            {
+                return ObjectMapper.Mapper.Map<List<MemberDTO>>(repository.GetAll());
+            }
+            catch (Exception)
+            {
+                throw new Exception();
+            }
         }
 
         public bool Update(MemberDTO entity)
         {
-            throw new NotImplementedException();
+            return repository.Modify(ObjectMapper.Mapper.Map<Member>(entity));
         }
     }
 }

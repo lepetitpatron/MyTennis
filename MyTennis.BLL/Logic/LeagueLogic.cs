@@ -1,4 +1,5 @@
-﻿using MyTennis.Core.DTO;
+﻿using MyTennis.BLL.Utilities;
+using MyTennis.Core.DTO;
 using MyTennis.DAL;
 using MyTennis.DAL.Entities;
 using MyTennis.DAL.Repositories;
@@ -19,7 +20,7 @@ namespace MyTennis.BLL
 
         public bool Create(LeagueDTO entity)
         {
-            return repository.Add(Utilities.Mapper.Map<LeagueDTO, League>(entity));
+            return repository.Add(ObjectMapper.Mapper.Map<League>(entity));
         }
 
         public bool Delete(int id)
@@ -31,11 +32,11 @@ namespace MyTennis.BLL
         {
             try
             {
-                return Utilities.Mapper.Map<League, LeagueDTO>(repository.FindById(id));
+                return ObjectMapper.Mapper.Map<LeagueDTO>(repository.FindById(id));
             }
-            catch (Exception e)
+            catch (Exception)
             {
-                throw new Exception(e.Message);
+                throw new Exception();
             }
         }
 
@@ -43,17 +44,17 @@ namespace MyTennis.BLL
         {
             try
             {
-                return Utilities.Mapper.MapList<League, LeagueDTO>(repository.GetAll());
+                return ObjectMapper.Mapper.Map<List<LeagueDTO>>(repository.GetAll());
             }
-            catch (Exception e)
+            catch (Exception)
             {
-                throw new Exception(e.Message);
+                throw new Exception();
             }
         }
 
         public bool Update(LeagueDTO entity)
         {
-            return repository.Modify(Utilities.Mapper.Map<LeagueDTO, League>(entity));
+            return repository.Modify(ObjectMapper.Mapper.Map<League>(entity));
         }
     }
 }

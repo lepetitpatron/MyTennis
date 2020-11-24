@@ -1,8 +1,6 @@
 ﻿using MyTennis.Core.DTO;
 using MyTennis.UI.Processors;
 using MyTennis.UI.Views;
-using System;
-using System.Collections.Generic;
 using System.Windows;
 
 namespace MyTennis.UI
@@ -17,12 +15,15 @@ namespace MyTennis.UI
             InitializeComponent();
         }
 
-        private void RoleIcon_MouseDown(object sender, System.Windows.Input.MouseButtonEventArgs e)
+        private void MemberIcon_MouseDown(object sender, System.Windows.Input.MouseButtonEventArgs e)
         {
-            OpenRolesWindow();
+            MemberWindow memberWindow = new MemberWindow();
+            memberWindow.Show();
+
+            Hide();
         }
 
-        private void OpenRolesWindow()
+        private void RoleIcon_MouseDown(object sender, System.Windows.Input.MouseButtonEventArgs e)
         {
             RoleWindow roleWindow = new RoleWindow();
             roleWindow.Show();

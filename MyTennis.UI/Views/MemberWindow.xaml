@@ -11,18 +11,7 @@
             <ColumnDefinition Width="*"></ColumnDefinition>
         </Grid.ColumnDefinitions>
 
-        <WrapPanel Orientation="Vertical" Grid.Column="0">
-            <StackPanel Orientation="Horizontal">
-                <Label>First name</Label>
-                <TextBox Width="100"></TextBox>
-            </StackPanel>
-            <StackPanel Orientation="Horizontal">
-                <Label>Last name</Label>
-                <TextBox Width="100"></TextBox>
-            </StackPanel>
-
-            <Button Content="Create Member" Click="Button_Click"></Button>
-        </WrapPanel>
+        <Button Content="Create Member" Width="100"  Height="30" Click="Button_Click"></Button>
     </Grid>
 
     

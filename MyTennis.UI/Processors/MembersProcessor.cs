@@ -21,24 +21,37 @@ namespace MyTennis.UI.Processors
             return response.IsSuccessStatusCode;
         }
 
-        public Task<bool> Delete(int id)
+        public async Task<bool> Delete(int id)
         {
-            throw new NotImplementedException();
+            HttpResponseMessage response = await ApiHelper.ApiClient.DeleteAsync($"{url}/{id}");
+            await response.Content.ReadAsStringAsync();
+
+            return response.IsSuccessStatusCode;
         }
 
-        public Task<MemberDTO> FindById(int id)
+        public async Task<MemberDTO> FindById(int id)
         {
-            throw new NotImplementedException();
+            HttpResponseMessage response = await ApiHelper.ApiClient.GetAsync($"{url}/{id}");
+            string content = await response.Content.ReadAsStringAsync();
+
+            return JsonConvert.DeserializeObject<MemberDTO>(content);
         }
 
-        public Task<List<MemberDTO>> GetAll()
+        public async Task<List<MemberDTO>> GetAll()
         {
-            throw new NotImplementedException();
+            HttpResponseMessage response = await ApiHelper.ApiClient.GetAsync(url);
+            string content = await response.Content.ReadAsStringAsync();
+
+            return JsonConvert.DeserializeObject<List<MemberDTO>>(content);
         }
 
-        public Task<bool> Update(MemberDTO t)
+        public async Task<bool> Update(MemberDTO t)
         {
-            throw new NotImplementedException();
+            string obj = JsonConvert.SerializeObject(t);
+            StringContent content = new StringContent(obj, Encoding.UTF8, "application/json");
+            HttpResponseMessage response = await ApiHelper.ApiClient.PutAsync(url, content);
+
+            return response.IsSuccessStatusCode;
         }
     }
 }

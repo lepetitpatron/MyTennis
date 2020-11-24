@@ -1,5 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
 
 namespace MyTennis.Core.DTO
 {
@@ -18,6 +17,5 @@ namespace MyTennis.Core.DTO
         public string City { get; set; }
         public string PhoneNr { get; set; }
         public bool IsActive { get; set; }
-        //public IList<MemberRoleDTO> MemberRoles { get; set; }
     }
 }
