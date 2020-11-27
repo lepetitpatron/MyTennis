@@ -38,7 +38,7 @@ namespace MyTennis.DAL.Repositories
 
         public List<Member> GetAll()
         {
-            IQueryable<Member> query = _context.Set<Member>();
+            IQueryable<Member> query = _context.Set<Member>().Where(m => m.IsActive);
             IEnumerable<Member> result = query.ToList();
 
             return result.ToList();
@@ -58,11 +58,14 @@ namespace MyTennis.DAL.Repositories
 
         public bool Remove(int id)
         {
-            if (_context.Set<Member>().SingleOrDefault(e => e.Id == id) == null)
-                return false;
+            Member entity = _context.Members.Where(e => e.Id == id).FirstOrDefault();
+            if (entity == null) return false;
 
-            Member entity = _context.Members.Find(id);
-            _context.Entry(entity).State = EntityState.Deleted;
+            Member removedMember = _context.Set<Member>().SingleOrDefault(e => e.Id == id);
+            removedMember.IsActive = false;
+
+            EntityEntry entry = _context.Entry(entity);
+            entry.CurrentValues.SetValues(removedMember);
             _context.SaveChanges();
 
             return true;

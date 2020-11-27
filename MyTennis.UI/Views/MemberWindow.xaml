@@ -1,18 +1,157 @@
-﻿<Window x:Class="MyTennis.UI.Views.MemberWindow"
+﻿<Window x:Name="Window" x:Class="MyTennis.UI.Views.MemberWindow"
         xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         mc:Ignorable="d"
-        Title="MemberWindow" Height="550" Width="750">
-    
+        Title="MyTennis" Height="550" Width="750"
+        UseLayoutRounding="True" Loaded="Window_Loaded">
+
     <Grid>
+        <!-- Structure -->
         <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="200"></ColumnDefinition>
             <ColumnDefinition Width="*"></ColumnDefinition>
         </Grid.ColumnDefinitions>
 
-        <Button Content="Create Member" Width="100"  Height="30" Click="Button_Click"></Button>
-    </Grid>
+        <!-- Color -->
+        <Rectangle Grid.Column="0" Fill="DarkRed"></Rectangle>
 
-    
+        <!-- Content -->
+        <StackPanel Orientation="Vertical" HorizontalAlignment="Left" VerticalAlignment="Center" Margin="48,0,0,0">
+            <TextBlock Text="Ledenbeheer" TextAlignment="Center" VerticalAlignment="Center" Foreground="Gold" FontSize="18"></TextBlock>
+            <Separator Height="140" Opacity="0"></Separator>
+            <TextBlock x:Name="LabelOverview" Text="Overzicht" TextAlignment="Left" Foreground="White" FontSize="16" Margin="0,5,0,5" Cursor="Hand" MouseDown="LabelOverview_MouseDown"></TextBlock>
+            <TextBlock x:Name="LabelAdd" Text="Toevoegen" TextAlignment="Left" Foreground="White" FontSize="16" Margin="0,5,0,5" Cursor="Hand" MouseDown="LabelAdd_MouseDown"></TextBlock>
+            <TextBlock x:Name="LabelModify" Text="Aanpassen" TextAlignment="Left" Foreground="White" FontSize="16" Margin="0,5,0,5" Cursor="Hand" MouseDown="LabelModify_MouseDown"></TextBlock>
+            <TextBlock x:Name="LabelDelete" Text="Verwijderen" TextAlignment="Left" Foreground="White" FontSize="16" Margin="0,5,0,5" Cursor="Hand" MouseDown="LabelDelete_MouseDown"></TextBlock>
+            <Separator Height="140" Opacity="0"></Separator>
+            <TextBlock x:Name="Return" Text="Terugkeren" TextAlignment="Center" Foreground="White" FontSize="14" Cursor="Hand" MouseDown="Return_MouseDown"></TextBlock>
+        </StackPanel>
+
+        <StackPanel x:Name="Overview" Margin="10" Grid.Column="1" Visibility="Visible">
+            <TextBlock Text="Overzicht Leden" Foreground="DarkRed" FontSize="16" Margin="0,0,0,10"></TextBlock>
+            <DataGrid x:Name="OverviewMembers"></DataGrid>
+        </StackPanel>
+
+        <StackPanel x:Name="Add" Margin="10" Grid.Column="1" Visibility="Collapsed">
+            <TextBlock Text="Lid Toevoegen" Foreground="DarkRed" FontSize="16" Margin="0,0,0,10"></TextBlock>
+            <DockPanel Width="300" HorizontalAlignment="Left" Margin="0,0,0,10">
+                <TextBlock Text="Federatie Nr"></TextBlock>
+                <TextBox x:Name="AddFederationNr" Width="200" MaxLength="10" HorizontalAlignment="Right"></TextBox>
+            </DockPanel>
+            <DockPanel Width="300" HorizontalAlignment="Left" Margin="0,0,0,10">
+                <TextBlock Text="Voornaam"></TextBlock>
+                <TextBox x:Name="AddFirstName" Width="200" MaxLength="25" HorizontalAlignment="Right"></TextBox>
+            </DockPanel>
+            <DockPanel Width="300" HorizontalAlignment="Left" Margin="0,0,0,10">
+                <TextBlock Text="Achternaam"></TextBlock>
+                <TextBox x:Name="AddLastName" Width="200" MaxLength="35" HorizontalAlignment="Right"></TextBox>
+            </DockPanel>
+            <DockPanel Width="300" HorizontalAlignment="Left" Margin="0,0,0,10">
+                <TextBlock Text="Geboortedatum" VerticalAlignment="Center"></TextBlock>
+                <DatePicker x:Name="AddBirthDate" Width="200" HorizontalAlignment="Right" ></DatePicker>
+            </DockPanel>
+            <DockPanel Width="300" HorizontalAlignment="Left" Margin="0,0,0,10">
+                <TextBlock Text="Geslacht" Margin="0,0,55,0"></TextBlock>
+                <RadioButton x:Name="GenderMale" GroupName="gender" IsChecked="True" Margin="0,0,10,0">Man</RadioButton>
+                <RadioButton GroupName="gender">Vrouw</RadioButton>
+            </DockPanel>
+            <DockPanel Width="300" HorizontalAlignment="Left" Margin="0,0,0,10">
+                <TextBlock Text="Adres"></TextBlock>
+                <TextBox x:Name="AddAddress" Width="200" MaxLength="70" HorizontalAlignment="Right"></TextBox>
+            </DockPanel>
+            <DockPanel Width="300" HorizontalAlignment="Left" Margin="0,0,0,10">
+                <TextBlock Text="Nummer"></TextBlock>
+                <TextBox x:Name="AddNumber" Width="200" MaxLength="6" HorizontalAlignment="Right"></TextBox>
+            </DockPanel>
+            <DockPanel Width="300" HorizontalAlignment="Left" Margin="0,0,0,10">
+                <TextBlock Text="Additie"></TextBlock>
+                <TextBox x:Name="AddAddition" Width="200" MaxLength="2" HorizontalAlignment="Right"></TextBox>
+            </DockPanel>
+            <DockPanel Width="300" HorizontalAlignment="Left" Margin="0,0,0,10">
+                <TextBlock Text="Postcode"></TextBlock>
+                <TextBox x:Name="AddZip" Width="200" MaxLength="6" HorizontalAlignment="Right"></TextBox>
+            </DockPanel>
+            <DockPanel Width="300" HorizontalAlignment="Left" Margin="0,0,0,10">
+                <TextBlock Text="Stad"></TextBlock>
+                <TextBox x:Name="AddCity" Width="200" MaxLength="30" HorizontalAlignment="Right"></TextBox>
+            </DockPanel>
+            <DockPanel Width="300" HorizontalAlignment="Left" Margin="0,0,0,10">
+                <TextBlock Text="Telefoon Nr"></TextBlock>
+                <TextBox x:Name="AddPhoneNumber" Width="200" MaxLength="15" HorizontalAlignment="Right"></TextBox>
+            </DockPanel>
+            <DockPanel Width="300" HorizontalAlignment="Left" Margin="0,0,0,10">
+                <TextBlock x:Name="AddError" Text="" Foreground="DarkRed" FontSize="11" HorizontalAlignment="Right" Visibility="Collapsed"></TextBlock>
+            </DockPanel>
+            <DockPanel Width="300" HorizontalAlignment="Left">
+                <Button x:Name="AddConfirm" Width="100" Height="25" Background="DarkRed" Foreground="White" Content="Toevoegen" HorizontalAlignment="Right" Click="AddConfirm_Click"></Button>
+            </DockPanel>
+        </StackPanel>
+
+        <StackPanel x:Name="Modify" Margin="10" Grid.Column="1" Visibility="Collapsed">
+            <TextBlock Text="Lid Aanpassen" Foreground="DarkRed" FontSize="16" Margin="0,0,0,10"></TextBlock>
+            <DockPanel Width="300" HorizontalAlignment="Left" Margin="0,0,0,10">
+                <TextBlock Text="Lid" VerticalAlignment="Center"></TextBlock>
+                <ComboBox x:Name="ModifyPicker" Width="200" HorizontalAlignment="Right" SelectionChanged="ModifyPicker_SelectionChanged"></ComboBox>
+            </DockPanel>
+            <DockPanel Width="300" HorizontalAlignment="Left" Margin="0,0,0,10">
+                <TextBlock Text="Federatie Nr"></TextBlock>
+                <TextBox x:Name="ModifyFederationNr" Width="200" MaxLength="10" HorizontalAlignment="Right"></TextBox>
+            </DockPanel>
+            <DockPanel Width="300" HorizontalAlignment="Left" Margin="0,0,0,10">
+                <TextBlock Text="Voornaam"></TextBlock>
+                <TextBox x:Name="ModifyFirstName" Width="200" MaxLength="25" HorizontalAlignment="Right"></TextBox>
+            </DockPanel>
+            <DockPanel Width="300" HorizontalAlignment="Left" Margin="0,0,0,10">
+                <TextBlock Text="Achternaam"></TextBlock>
+                <TextBox x:Name="ModifyLastName" Width="200" MaxLength="35" HorizontalAlignment="Right"></TextBox>
+            </DockPanel>
+            <DockPanel Width="300" HorizontalAlignment="Left" Margin="0,0,0,10">
+                <TextBlock Text="Geboortedatum" VerticalAlignment="Center"></TextBlock>
+                <DatePicker x:Name="ModifyBirthDate" Width="200" HorizontalAlignment="Right" ></DatePicker>
+            </DockPanel>
+            <DockPanel Width="300" HorizontalAlignment="Left" Margin="0,0,0,10">
+                <TextBlock Text="Geslacht" Margin="0,0,55,0"></TextBlock>
+                <RadioButton x:Name="ModifyGenderMale" GroupName="ModifyGender" IsChecked="True" Margin="0,0,10,0">Man</RadioButton>
+                <RadioButton x:Name="ModifyGenderFemale" GroupName="ModifyGender">Vrouw</RadioButton>
+            </DockPanel>
+            <DockPanel Width="300" HorizontalAlignment="Left" Margin="0,0,0,10">
+                <TextBlock Text="Adres"></TextBlock>
+                <TextBox x:Name="ModifyAddress" Width="200" MaxLength="70" HorizontalAlignment="Right"></TextBox>
+            </DockPanel>
+            <DockPanel Width="300" HorizontalAlignment="Left" Margin="0,0,0,10">
+                <TextBlock Text="Nummer"></TextBlock>
+                <TextBox x:Name="ModifyNumber" Width="200" MaxLength="6" HorizontalAlignment="Right"></TextBox>
+            </DockPanel>
+            <DockPanel Width="300" HorizontalAlignment="Left" Margin="0,0,0,10">
+                <TextBlock Text="Additie"></TextBlock>
+                <TextBox x:Name="ModifyAddition" Width="200" MaxLength="2" HorizontalAlignment="Right"></TextBox>
+            </DockPanel>
+            <DockPanel Width="300" HorizontalAlignment="Left" Margin="0,0,0,10">
+                <TextBlock Text="Postcode"></TextBlock>
+                <TextBox x:Name="ModifyZip" Width="200" MaxLength="6" HorizontalAlignment="Right"></TextBox>
+            </DockPanel>
+            <DockPanel Width="300" HorizontalAlignment="Left" Margin="0,0,0,10">
+                <TextBlock Text="Stad"></TextBlock>
+                <TextBox x:Name="ModifyCity" Width="200" MaxLength="30" HorizontalAlignment="Right"></TextBox>
+            </DockPanel>
+            <DockPanel Width="300" HorizontalAlignment="Left" Margin="0,0,0,10">
+                <TextBlock Text="Telefoon Nr"></TextBlock>
+                <TextBox x:Name="ModifyPhoneNumber" Width="200" MaxLength="15" HorizontalAlignment="Right"></TextBox>
+            </DockPanel>
+            <DockPanel Width="300" HorizontalAlignment="Left" Margin="0,0,0,10">
+                <TextBlock x:Name="ModifyError" Text="" Foreground="DarkRed" FontSize="11" HorizontalAlignment="Right" Visibility="Collapsed"></TextBlock>
+            </DockPanel>
+            <DockPanel Width="300" HorizontalAlignment="Left">
+                <Button x:Name="ModifyConfirm" Width="100" Height="25" Background="DarkRed" Foreground="White" Content="Aanpassen" HorizontalAlignment="Right" Click="ModifyConfirm_Click"></Button>
+            </DockPanel>
+        </StackPanel>
+
+        <StackPanel x:Name="Delete" Margin="10" Grid.Column="1" Visibility="Collapsed">
+            <TextBlock Text="Lid Verwijderen" Foreground="DarkRed" FontSize="16" Margin="0,0,0,10"></TextBlock>
+            <ComboBox x:Name="DeletePicker" Width="200" HorizontalAlignment="Left" Margin="0,0,0,10"></ComboBox>
+            <Button x:Name="DeleteConfirm" Width="100" Height="25" Background="DarkRed" Foreground="White" Content="Verwijderen" HorizontalAlignment="Left" Cursor="Hand" Click="DeleteConfirm_Click"></Button>
+        </StackPanel>
+    </Grid>
 </Window>

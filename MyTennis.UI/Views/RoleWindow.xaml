@@ -31,24 +31,38 @@
             <TextBlock x:Name="Return" Text="Terugkeren" TextAlignment="Center" Foreground="White" FontSize="14" Cursor="Hand" MouseDown="Return_MouseDown"></TextBlock>
         </StackPanel>
 
-        <StackPanel x:Name="Overview" Grid.Column="3" Margin="5,15,2,15" Grid.ColumnSpan="3">
+        <StackPanel x:Name="Overview" Grid.Column="3" Margin="5,15,2,15" Grid.ColumnSpan="3" Visibility="Visible">
             <TextBlock Text="Overzicht Rollen" Foreground="DarkRed" FontSize="16" Margin="0,0,0,10"></TextBlock>
             <ListBox x:Name="OverviewList" MinWidth="200" HorizontalAlignment="Left" BorderThickness="0"></ListBox>
         </StackPanel>
 
-        <StackPanel x:Name="Add" Grid.Column="3" Margin="5,15,2,15" Visibility="Hidden">
+        <StackPanel x:Name="Add" Grid.Column="3" Margin="5,15,2,15" Visibility="Collapsed">
             <TextBlock Text="Rol Toevoegen" Foreground="DarkRed" FontSize="16" Margin="0,0,0,10"></TextBlock>
-            <TextBox x:Name="AddInput" Width="200" HorizontalAlignment="Left" Margin="0,0,0,10"></TextBox>
-            <TextBlock x:Name="AddError" Text="" Foreground="DarkRed" FontSize="11" Margin="0,0,0,10" Visibility="Collapsed"></TextBlock>
-            <Button x:Name="AddConfirm" Width="100" Height="25" Background="DarkRed" Foreground="White" Content="Toevoegen" HorizontalAlignment="Left" Click="AddConfirm_Click"></Button>
+            <DockPanel Width="230" HorizontalAlignment="Left">
+                <TextBlock Text="Rol"></TextBlock>
+                <TextBox x:Name="AddInput" Width="200" HorizontalAlignment="Right" Margin="0,0,0,10"></TextBox>
+            </DockPanel>
+            <DockPanel Width="230" HorizontalAlignment="Left">
+                <TextBlock x:Name="AddError" Text="" Foreground="DarkRed" FontSize="11" HorizontalAlignment="Right" Margin="0,0,0,10" Visibility="Collapsed"></TextBlock>
+            </DockPanel>
+            <DockPanel Width="230" HorizontalAlignment="Left">
+                <Button x:Name="AddConfirm" Width="100" Height="25" Background="DarkRed" Foreground="White" Content="Toevoegen" HorizontalAlignment="Right" Click="AddConfirm_Click"></Button>
+            </DockPanel>
         </StackPanel>
 
         <StackPanel x:Name="Modify" Grid.Column="3" Margin="5,15,2,15" Visibility="Collapsed">
             <TextBlock Text="Rol Aanpassen" Foreground="DarkRed" FontSize="16" Margin="0,0,0,10"></TextBlock>
-            <ComboBox x:Name="ModifyPicker" Width="200" HorizontalAlignment="Left"></ComboBox>
-            <TextBox x:Name="ModifyInput" Width="200" HorizontalAlignment="Left" Margin="0,10,0,10"></TextBox>
-            <TextBlock x:Name="ModifyError" Text="" Foreground="DarkRed" FontSize="11" Margin="0,0,0,10" Visibility="Collapsed"></TextBlock>
-            <Button x:Name="ModifyConfirm" Width="100" Height="25" Background="DarkRed" Foreground="White" Content="Aanpassen" HorizontalAlignment="Left" Click="ModifyConfirm_Click"></Button>
+            <ComboBox x:Name="ModifyPicker" Width="230" HorizontalAlignment="Left"></ComboBox>
+            <DockPanel Width="230" HorizontalAlignment="Left">
+                <TextBlock Text="Rol" VerticalAlignment="Center"></TextBlock>
+                <TextBox x:Name="ModifyInput" Width="200" HorizontalAlignment="Right" Margin="0,10,0,10"></TextBox>
+            </DockPanel>
+            <DockPanel Width="230" HorizontalAlignment="Left">
+                <TextBlock x:Name="ModifyError" Text="" Foreground="DarkRed" FontSize="11" Margin="0,0,0,10" HorizontalAlignment="Right" Visibility="Collapsed"></TextBlock>
+            </DockPanel>
+            <DockPanel Width="230" HorizontalAlignment="Left">
+                <Button x:Name="ModifyConfirm" Width="100" Height="25" Background="DarkRed" Foreground="White" Content="Aanpassen" HorizontalAlignment="Right" Click="ModifyConfirm_Click"></Button>
+            </DockPanel>
         </StackPanel>
     </Grid>
 </Window>

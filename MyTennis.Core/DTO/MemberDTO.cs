@@ -17,5 +17,10 @@ namespace MyTennis.Core.DTO
         public string City { get; set; }
         public string PhoneNr { get; set; }
         public bool IsActive { get; set; }
+
+        public override string ToString()
+        {
+            return $"{FirstName} {LastName} ({FederationNr})";
+        }
     }
 }
