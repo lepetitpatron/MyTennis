@@ -1,6 +1,4 @@
-﻿using MyTennis.Core.DTO;
-using MyTennis.UI.Processors;
-using MyTennis.UI.Views;
+﻿using MyTennis.UI.Views;
 using System.Windows;
 
 namespace MyTennis.UI
@@ -19,6 +17,14 @@ namespace MyTennis.UI
         {
             MemberWindow memberWindow = new MemberWindow();
             memberWindow.Show();
+
+            Hide();
+        }
+
+        private void FineIcon_MouseDown(object sender, System.Windows.Input.MouseButtonEventArgs e)
+        {
+            FineWindow fineWindow = new FineWindow();
+            fineWindow.Show();
 
             Hide();
         }

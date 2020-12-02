@@ -33,7 +33,7 @@
             <StackPanel Grid.Row="2" Orientation="Horizontal" HorizontalAlignment="Center" VerticalAlignment="Center">
                 <iconPacks:PackIconFontAwesome x:Name="GameIcon" Kind="TableTennisSolid" Foreground="White" Margin="30,0,30,0" Width="85" Height="85" Cursor="Hand"/>
                 <iconPacks:PackIconFontAwesome x:Name="MemberIcon" Kind="UserAltSolid" Foreground="White" Margin="30,0,30,0" Width="85" Height="85" Cursor="Hand" MouseDown="MemberIcon_MouseDown"/>
-                <iconPacks:PackIconFontAwesome x:Name="FineIcon" Kind="ReceiptSolid" Foreground="White" Margin="30,0,30,0" Width="85" Height="85" Cursor="Hand"/>
+                <iconPacks:PackIconFontAwesome x:Name="FineIcon" Kind="ReceiptSolid" Foreground="White" Margin="30,0,30,0" Width="85" Height="85" Cursor="Hand" MouseDown="FineIcon_MouseDown"/>
                 <iconPacks:PackIconFontAwesome x:Name="RoleIcon" Kind="IdBadgeSolid" Foreground="White" Margin="30,0,30,0" Width="85" Height="85" Cursor="Hand" MouseDown="RoleIcon_MouseDown"/>
             </StackPanel>
             

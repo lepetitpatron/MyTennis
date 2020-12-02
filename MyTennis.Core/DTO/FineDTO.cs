@@ -10,5 +10,10 @@ namespace MyTennis.Core.DTO
         public double Amount { get; set; }
         public DateTime HandoutDate { get; set; }
         public DateTime PaymentDate { get; set; }
+
+        public override string ToString()
+        {
+            return $"Boete Nr: {FineNumber}";
+        }
     }
 }
