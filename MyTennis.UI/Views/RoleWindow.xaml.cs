@@ -49,6 +49,12 @@ namespace MyTennis.UI.Views
             ConfigurePickerAssignRole.SelectedIndex = 0;
             ConfigurePickerRetractMember.SelectedIndex = 0;
             ConfigurePickerRetractRole.SelectedIndex = 0;
+
+            if (!MembersAvailable())
+            {
+                AssignConfirm.IsEnabled = false;
+                RetractConfirm.IsEnabled = false;
+            }
         }
 
         private async void AddConfirm_Click(object sender, RoutedEventArgs e)
@@ -169,7 +175,7 @@ namespace MyTennis.UI.Views
             ConfigurePickerRetractRole.ItemsSource = availableRoles;
             ConfigurePickerRetractRole.SelectedIndex = 0;
 
-            RetractConfirm.IsEnabled = (availableRoles.Count == 0) ? false : true;
+            RetractConfirm.IsEnabled = (availableRoles.Count == 0 && MembersAvailable()) ? false : true;
         }
 
         private bool ValidateRole(TextBox input, TextBlock error)
@@ -198,6 +204,11 @@ namespace MyTennis.UI.Views
             }
 
             return valid;
+        }
+
+        private bool MembersAvailable()
+        {
+            return members.Count > 0;
         }
 
         private void LabelOverview_MouseDown(object sender, MouseButtonEventArgs e)

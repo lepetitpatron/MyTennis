@@ -35,7 +35,19 @@ namespace MyTennis.UI.Views
             ModifyPicker.SelectedIndex = 0;
             DeletePicker.SelectedIndex = 0;
 
-            SetModifyMember(members[0]);
+            if (MembersAvailable())
+            {
+                SetModifyMember(members[0]);
+
+                ModifyConfirm.IsEnabled = true;
+                DeleteConfirm.IsEnabled = true;
+            }
+            else
+            {
+                ModifyConfirm.IsEnabled = false;
+                DeleteConfirm.IsEnabled = false;
+            }
+                
         }
 
         private async void AddConfirm_Click(object sender, RoutedEventArgs e)
@@ -61,7 +73,7 @@ namespace MyTennis.UI.Views
                 FederationNr = AddFederationNr.Text,
                 FirstName = AddFirstName.Text,
                 LastName = AddLastName.Text,
-                BirthDate = (DateTime) ModifyBirthDate.SelectedDate,
+                BirthDate = (DateTime) AddBirthDate.SelectedDate,
                 GenderId = (bool) (GenderMale.IsChecked) ? (byte) 1 : (byte) 2,
                 Address = AddAddress.Text,
                 Number = AddNumber.Text,
@@ -212,10 +224,18 @@ namespace MyTennis.UI.Views
             }
         }
 
+        private bool MembersAvailable()
+        {
+            return members.Count > 0;
+        }
+
         private void ModifyPicker_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
-            MemberDTO member = (MemberDTO)ModifyPicker.SelectedItem;
-            SetModifyMember(member);
+            if (MembersAvailable())
+            {
+                MemberDTO member = (MemberDTO)ModifyPicker.SelectedItem;
+                SetModifyMember(member);
+            }
         }
 
         private void LabelOverview_MouseDown(object sender, System.Windows.Input.MouseButtonEventArgs e)

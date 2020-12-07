@@ -39,6 +39,12 @@ namespace MyTennis.UI.Views
 
             ModifyPicker.ItemsSource = fines.FindAll(fine => fine.PaymentDate == new DateTime(9999, 1, 1));
             ModifyPicker.SelectedIndex = 0;
+
+            if (!MembersAvailable())
+                AddConfirm.IsEnabled = false;
+
+            if (fines.Count < 1)
+                ModifyConfirm.IsEnabled = false;
         }
 
         private async void AddConfirm_Click(object sender, RoutedEventArgs e)
@@ -179,6 +185,11 @@ namespace MyTennis.UI.Views
                     maskedInput.Text = "_______,__";
                 }
             }
+        }
+
+        private bool MembersAvailable()
+        {
+            return members.Count > 0;
         }
 
         private void ModifyPicker_SelectionChanged(object sender, SelectionChangedEventArgs e)

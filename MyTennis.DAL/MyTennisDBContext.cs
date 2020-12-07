@@ -8,7 +8,7 @@ namespace MyTennis.DAL
     {
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
-            optionsBuilder.UseSqlServer(@"data source=.\SQLEXPRESS; initial catalog=MyTennis; integrated security=True;");
+            optionsBuilder.UseSqlServer(@"data source=.; initial catalog=MyTennis; integrated security=True;");
         }
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
