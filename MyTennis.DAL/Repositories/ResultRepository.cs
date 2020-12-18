@@ -1,4 +1,5 @@
-﻿using Microsoft.EntityFrameworkCore.ChangeTracking;
+﻿using Microsoft.EntityFrameworkCore;
+using Microsoft.EntityFrameworkCore.ChangeTracking;
 using MyTennis.DAL.Entities;
 using System;
 using System.Collections.Generic;
@@ -57,7 +58,14 @@ namespace MyTennis.DAL.Repositories
 
         public bool Remove(int id)
         {
-            return false;
+            if (_context.Set<Result>().SingleOrDefault(e => e.Id == id) == null)
+                return false;
+
+            Result entity = _context.Results.Find(id);
+            _context.Entry(entity).State = EntityState.Deleted;
+            _context.SaveChanges();
+
+            return true;
         }
     }
 }

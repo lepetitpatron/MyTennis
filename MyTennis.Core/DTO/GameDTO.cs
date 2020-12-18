@@ -9,5 +9,10 @@ namespace MyTennis.Core.DTO
         public int MemberId { get; set; }
         public byte LeagueId { get; set; }
         public DateTime Date { get; set; }
+
+        public override string ToString()
+        {
+            return GameNumber;
+        }
     }
 }

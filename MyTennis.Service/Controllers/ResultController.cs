@@ -47,5 +47,14 @@ namespace MyTennis.Service.Controllers
             else
                 return new HttpResponseMessage(HttpStatusCode.InternalServerError);
         }
+
+        [HttpDelete("{id}")]
+        public HttpResponseMessage DeleteResult (int id)
+        {
+            if (logic.Delete(id))
+                return new HttpResponseMessage(HttpStatusCode.OK);
+            else
+                return new HttpResponseMessage(HttpStatusCode.InternalServerError);
+        }
     }
 }

@@ -44,7 +44,10 @@ namespace MyTennis.BLL
         {
             try
             {
-                return ObjectMapper.Mapper.Map<List<LeagueDTO>>(repository.GetAll());
+                List<LeagueDTO> leagues = ObjectMapper.Mapper.Map<List<LeagueDTO>>(repository.GetAll());
+                leagues.Sort((x, y) => x.Id.CompareTo(y.Id));
+
+                return leagues;
             }
             catch (Exception)
             {

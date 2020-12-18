@@ -13,6 +13,14 @@ namespace MyTennis.UI
             InitializeComponent();
         }
 
+        private void GameIcon_MouseDown(object sender, System.Windows.Input.MouseButtonEventArgs e)
+        {
+            GameWindow gameWindow = new GameWindow();
+            gameWindow.Show();
+
+            Hide();
+        }
+
         private void MemberIcon_MouseDown(object sender, System.Windows.Input.MouseButtonEventArgs e)
         {
             MemberWindow memberWindow = new MemberWindow();

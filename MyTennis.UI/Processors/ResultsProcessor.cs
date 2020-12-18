@@ -20,9 +20,12 @@ namespace MyTennis.UI.Processors
             return response.IsSuccessStatusCode;
         }
 
-        public Task<bool> Delete(int id)
+        public async Task<bool> Delete(int id)
         {
-            return null;
+            HttpResponseMessage response = await ApiHelper.ApiClient.DeleteAsync($"{url}/{id}");
+            await response.Content.ReadAsStringAsync();
+
+            return response.IsSuccessStatusCode;
         }
 
         public async Task<ResultDTO> FindById(int id)

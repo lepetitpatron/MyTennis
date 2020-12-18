@@ -233,7 +233,7 @@ namespace MyTennis.UI.Views
         {
             if (MembersAvailable())
             {
-                MemberDTO member = (MemberDTO)ModifyPicker.SelectedItem;
+                MemberDTO member = (MemberDTO) ModifyPicker.SelectedItem;
                 SetModifyMember(member);
             }
         }
