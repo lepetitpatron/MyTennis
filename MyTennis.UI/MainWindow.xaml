@@ -4,8 +4,9 @@
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" xmlns:iconPacks="http://metro.mahapps.com/winfx/xaml/iconpacks"
         mc:Ignorable="d"
-        Title="MyTennis" Height="550" Width="750"
+        Title="MyTennis" Height="800" Width="1450"
         Icon="MyTennis.ico"
+        WindowStartupLocation="CenterScreen" ResizeMode="NoResize"
         UseLayoutRounding="True">
 
     <Grid>
@@ -15,7 +16,7 @@
                 <RowDefinition Height="50"></RowDefinition>
                 <RowDefinition Height="*"></RowDefinition>
                 <RowDefinition Height="150"></RowDefinition>
-                <RowDefinition Height="50"></RowDefinition>
+                <RowDefinition Height="100"></RowDefinition>
                 <RowDefinition Height="*"></RowDefinition>
                 <RowDefinition Height="50"></RowDefinition>
             </Grid.RowDefinitions>
@@ -32,17 +33,17 @@
             <TextBlock Text="MyTennis" Grid.Row="5" VerticalAlignment="Center" Margin="20,0,0,0" FontSize="18" FontWeight="Normal" Foreground="White"/>
 
             <StackPanel Grid.Row="2" Orientation="Horizontal" HorizontalAlignment="Center" VerticalAlignment="Center">
-                <iconPacks:PackIconFontAwesome x:Name="GameIcon" Kind="TableTennisSolid" Foreground="White" Margin="30,0,30,0" Width="85" Height="85" Cursor="Hand" MouseDown="GameIcon_MouseDown"/>
-                <iconPacks:PackIconFontAwesome x:Name="MemberIcon" Kind="UserAltSolid" Foreground="White" Margin="30,0,30,0" Width="85" Height="85" Cursor="Hand" MouseDown="MemberIcon_MouseDown"/>
-                <iconPacks:PackIconFontAwesome x:Name="FineIcon" Kind="ReceiptSolid" Foreground="White" Margin="30,0,30,0" Width="85" Height="85" Cursor="Hand" MouseDown="FineIcon_MouseDown"/>
-                <iconPacks:PackIconFontAwesome x:Name="RoleIcon" Kind="IdBadgeSolid" Foreground="White" Margin="30,0,30,0" Width="85" Height="85" Cursor="Hand" MouseDown="RoleIcon_MouseDown"/>
+                <iconPacks:PackIconFontAwesome x:Name="GameIcon" Kind="TableTennisSolid" Foreground="White" Margin="50,0,50,0" Width="150" Height="150" Cursor="Hand" MouseDown="GameIcon_MouseDown"/>
+                <iconPacks:PackIconFontAwesome x:Name="MemberIcon" Kind="UserAltSolid" Foreground="White" Margin="50,0,50,0" Width="150" Height="150" Cursor="Hand" MouseDown="MemberIcon_MouseDown"/>
+                <iconPacks:PackIconFontAwesome x:Name="FineIcon" Kind="ReceiptSolid" Foreground="White" Margin="50,0,50,0" Width="150" Height="150" Cursor="Hand" MouseDown="FineIcon_MouseDown"/>
+                <iconPacks:PackIconFontAwesome x:Name="RoleIcon" Kind="IdBadgeSolid" Foreground="White" Margin="50,0,50,0" Width="150" Height="150" Cursor="Hand" MouseDown="RoleIcon_MouseDown"/>
             </StackPanel>
             
             <StackPanel Grid.Row="3" Orientation="Horizontal" HorizontalAlignment="Center" VerticalAlignment="Center">
-                <TextBlock x:Name="GameLabel" Text="Wedstrijden" Margin="30,0,30,0" FontSize="16" Width="85" TextAlignment="Center" Foreground="White"/>
-                <TextBlock x:Name="MemberLabel" Text="Leden" Margin="30,0,30,0" FontSize="16" Width="85" TextAlignment="Center" Foreground="White"/>
-                <TextBlock x:Name="FineLabel" Text="Boetes" Margin="30,0,30,0" FontSize="16" Width="85" TextAlignment="Center" Foreground="White"/>
-                <TextBlock x:Name="RoleLabel" Text="Rollen" Margin="30,0,30,0" FontSize="16" Width="85" TextAlignment="Center" Foreground="White"/>
+                <TextBlock x:Name="GameLabel" Text="Wedstrijden" Margin="50,0,50,0" FontSize="25" Width="150" TextAlignment="Center" Foreground="White"/>
+                <TextBlock x:Name="MemberLabel" Text="Leden" Margin="50,0,50,0" FontSize="25" Width="150" TextAlignment="Center" Foreground="White"/>
+                <TextBlock x:Name="FineLabel" Text="Boetes" Margin="50,0,50,0" FontSize="25" Width="150" TextAlignment="Center" Foreground="White"/>
+                <TextBlock x:Name="RoleLabel" Text="Rollen" Margin="50,0,50,0" FontSize="25" Width="150" TextAlignment="Center" Foreground="White"/>
             </StackPanel>
         </Grid>
     </Grid>
