@@ -5,6 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" xmlns:iconPacks="http://metro.mahapps.com/winfx/xaml/iconpacks"
         mc:Ignorable="d"
         Title="MyTennis" Height="550" Width="750"
+        Icon="MyTennis.ico"
         UseLayoutRounding="True">
 
     <Grid>

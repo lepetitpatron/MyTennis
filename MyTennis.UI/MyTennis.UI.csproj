@@ -4,7 +4,12 @@
     <OutputType>WinExe</OutputType>
     <TargetFramework>netcoreapp3.1</TargetFramework>
     <UseWPF>true</UseWPF>
+    <ApplicationIcon>MyTennis.ico</ApplicationIcon>
   </PropertyGroup>
+
+  <ItemGroup>
+    <None Remove="MyTennis.ico" />
+  </ItemGroup>
 
   <ItemGroup>
     <PackageReference Include="Extended.Wpf.Toolkit" Version="4.0.1" />
@@ -14,6 +19,10 @@
 
   <ItemGroup>
     <ProjectReference Include="..\MyTennis.Core\MyTennis.Core.csproj" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Resource Include="MyTennis.ico" />
   </ItemGroup>
 
 </Project>

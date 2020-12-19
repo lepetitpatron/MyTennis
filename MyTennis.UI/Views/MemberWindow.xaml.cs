@@ -1,5 +1,6 @@
 ﻿using MyTennis.Core.DTO;
 using MyTennis.UI.Processors;
+using MyTennis.UI.ViewModels;
 using System;
 using System.Collections.Generic;
 using System.Windows;
@@ -12,23 +13,30 @@ namespace MyTennis.UI.Views
     /// </summary>
     public partial class MemberWindow : Window
     {
-        readonly MembersProcessor processor;
+        readonly MembersProcessor membersProcessor;
+        readonly RolesProcessor rolesProcessor;
+        readonly MemberRolesProcessor memberRolesProcessor;
         List<MemberDTO> members;
+        List<RoleDTO> roles;
 
         public MemberWindow()
         {
             InitializeComponent();
             ApiHelper.InitializeClient();
 
-            processor = new MembersProcessor();
+            membersProcessor = new MembersProcessor();
+            rolesProcessor = new RolesProcessor();
+            memberRolesProcessor = new MemberRolesProcessor();
         }
 
 
         private async void Window_Loaded(object sender, RoutedEventArgs e)
         {
-            members = await processor.GetAll();
+            members = await membersProcessor.GetAll();
+            roles = await rolesProcessor.GetAll();
 
-            OverviewMembers.ItemsSource = members;
+            FillOverview(members);
+
             ModifyPicker.ItemsSource = members;
             DeletePicker.ItemsSource = members;
 
@@ -88,7 +96,7 @@ namespace MyTennis.UI.Views
             ClearFields(controls);
             GenderMale.IsChecked = true;
 
-            await processor.Add(member);
+            await membersProcessor.Add(member);
 
             MessageBox.Show("De lid werd toegevoegd.", "Succes");
         }
@@ -134,7 +142,7 @@ namespace MyTennis.UI.Views
             SetModifyMember(members[0]);
             ModifyPicker.SelectedIndex = 0;
 
-            await processor.Update(member);
+            await membersProcessor.Update(member);
 
             MessageBox.Show("De lid werd aangepast.", "Succes");
         }
@@ -142,7 +150,7 @@ namespace MyTennis.UI.Views
         private async void DeleteConfirm_Click(object sender, RoutedEventArgs e)
         {
             MemberDTO member = (MemberDTO) DeletePicker.SelectedItem;
-            await processor.Delete(member.Id);
+            await membersProcessor.Delete(member.Id);
 
             DeletePicker.SelectedIndex = 0;
 
@@ -229,6 +237,55 @@ namespace MyTennis.UI.Views
             return members.Count > 0;
         }
 
+        private void FillOverview(List<MemberDTO> members)
+        {
+            OverviewMembers.Items.Clear();
+
+            foreach (MemberDTO member in members)
+            {
+                OverviewMembers.Items.Add(new MemberView
+                {
+                    FederationNr = member.FederationNr,
+                    FirstName = member.FirstName,
+                    LastName = member.LastName,
+                    BirthDate = member.BirthDate,
+                    Gender = (member.GenderId == 1) ? "Man" : "Vrouw",
+                    Address = member.Address,
+                    Number = member.Number,
+                    Addition = member.Addition,
+                    Zipcode = member.Zipcode,
+                    City = member.City,
+                    PhoneNr = member.PhoneNr
+                });;
+            }       
+        }
+
+        private void ApplyFilters()
+        {
+            List<MemberDTO> filteredMembers = members;
+            string federationNr = FilterFederationNr.Text.ToLower();
+            string firstName = FilterFirstName.Text.ToLower();
+            string lastName = FilterLastName.Text.ToLower();
+            string zipcode = FilterZipcode.Text.ToLower();
+            string city = FilterCity.Text.ToLower();
+
+            if (!string.IsNullOrWhiteSpace(federationNr))
+                filteredMembers = filteredMembers.FindAll(filter => filter.FederationNr.ToLower().Contains(federationNr));
+            if (!string.IsNullOrWhiteSpace(firstName))
+                filteredMembers = filteredMembers.FindAll(filter => filter.FirstName.ToLower().Contains(firstName));
+            if (!string.IsNullOrWhiteSpace(lastName))
+                filteredMembers = filteredMembers.FindAll(filter => filter.LastName.ToLower().Contains(lastName));
+            if (!string.IsNullOrWhiteSpace(zipcode))
+                filteredMembers = filteredMembers.FindAll(filter => filter.Zipcode.ToLower().Contains(zipcode));
+            if (!string.IsNullOrWhiteSpace(city))
+                filteredMembers = filteredMembers.FindAll(filter => filter.City.ToLower().Contains(city));
+
+            OverviewRoles.ItemsSource = null;
+            OverviewHistory.ItemsSource = null;
+
+            FillOverview(filteredMembers);
+        }
+
         private void ModifyPicker_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
             if (MembersAvailable())
@@ -236,6 +293,74 @@ namespace MyTennis.UI.Views
                 MemberDTO member = (MemberDTO) ModifyPicker.SelectedItem;
                 SetModifyMember(member);
             }
+        }
+
+        private void FilterFederationNr_TextChanged(object sender, TextChangedEventArgs e)
+        {
+            ApplyFilters();
+        }
+
+        private void FilterFirstName_TextChanged(object sender, TextChangedEventArgs e)
+        {
+            ApplyFilters();
+        }
+
+        private void FilterLastName_TextChanged(object sender, TextChangedEventArgs e)
+        {
+            ApplyFilters();
+        }
+
+        private void FilterZipcode_TextChanged(object sender, TextChangedEventArgs e)
+        {
+            ApplyFilters();
+        }
+
+        private void FilterCity_TextChanged(object sender, TextChangedEventArgs e)
+        {
+            ApplyFilters();
+        }
+
+        private void FilterReset_MouseDown(object sender, System.Windows.Input.MouseButtonEventArgs e)
+        {
+            FilterFederationNr.Text = "";
+            FilterFirstName.Text = "";
+            FilterLastName.Text = "";
+            FilterZipcode.Text = "";
+            FilterCity.Text = "";
+
+            OverviewRoles.ItemsSource = null;
+            OverviewHistory.ItemsSource = null;
+
+            FillOverview(members);
+        }
+
+        private async void OverviewMembers_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            MemberView memberView = (MemberView) OverviewMembers.SelectedItem;
+            if (memberView == null)
+                return;
+
+            MemberDTO member = members.Find(m => m.FederationNr == memberView.FederationNr);
+            List<MemberRoleDTO> memberRoles = await memberRolesProcessor.GetAllRoles(member.Id);
+            List<string> currentRoles = new List<string>();
+            List<string> ancientRoles = new List<string>();
+
+            foreach (MemberRoleDTO mr in memberRoles)
+            {
+                if (mr.EndDate == new DateTime(9999, 1, 1))
+                {
+                    RoleDTO role = roles.Find(role => role.Id == mr.RoleId);
+                    currentRoles.Add($"{role.Name} \t (vanaf {mr.StartDate.ToShortDateString()})");
+                }
+                else
+                {
+                    RoleDTO role = roles.Find(role => role.Id == mr.RoleId);
+                    ancientRoles.Add($"{role.Name} \t ({mr.StartDate.ToShortDateString()} - {mr.EndDate.ToShortDateString()})");
+                }
+            }
+
+            OverviewRoles.ItemsSource = currentRoles;
+            OverviewHistory.ItemsSource = ancientRoles;
         }
 
         private void LabelOverview_MouseDown(object sender, System.Windows.Input.MouseButtonEventArgs e)
