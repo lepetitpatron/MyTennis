@@ -4,13 +4,14 @@
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         mc:Ignorable="d"
-        Title="MyTennis" Height="550" Width="750"
+        Title="MyTennis" Height="800" Width="1450"
+        WindowStartupLocation="CenterScreen" ResizeMode="NoResize"
         UseLayoutRounding="True" Loaded="Window_Loaded">
 
     <Grid>
         <!-- Structure -->
         <Grid.ColumnDefinitions>
-            <ColumnDefinition Width="200"></ColumnDefinition>
+            <ColumnDefinition Width="250"></ColumnDefinition>
             <ColumnDefinition Width="*"></ColumnDefinition>
         </Grid.ColumnDefinitions>
 
@@ -19,94 +20,96 @@
 
         <!-- Content -->
         <StackPanel Orientation="Vertical" HorizontalAlignment="Left" VerticalAlignment="Center" Margin="48,0,0,0">
-            <TextBlock Text="Rollenbeheer" TextAlignment="Center" Foreground="Gold" FontSize="18"></TextBlock>
-            <Separator Height="140" Opacity="0"></Separator>
-            <TextBlock x:Name="LabelOverview" Text="Overzicht" TextAlignment="Left" Foreground="White" FontSize="16" Margin="0,5,0,5" Cursor="Hand" MouseDown="LabelOverview_MouseDown"></TextBlock>
-            <TextBlock x:Name="LabelAdd" Text="Toevoegen" TextAlignment="Left" Foreground="White" FontSize="16" Margin="0,5,0,5" Cursor="Hand" MouseDown="LabelAdd_MouseDown"></TextBlock>
-            <TextBlock x:Name="LabelModify" Text="Aanpassen" TextAlignment="Left" Foreground="White" FontSize="16" Margin="0,5,0,5" Cursor="Hand" MouseDown="LabelModify_MouseDown"></TextBlock>
-            <TextBlock x:Name="LabelConfigure" Text="Configureren" TextAlignment="Left" Foreground="White" FontSize="16" Margin="0,5,0,5" Cursor="Hand" MouseDown="LabelConfigure_MouseDown"></TextBlock>
-            <Separator Height="140" Opacity="0"></Separator>
-            <TextBlock x:Name="Return" Text="Terugkeren" TextAlignment="Center" Foreground="White" FontSize="14" Cursor="Hand" MouseDown="Return_MouseDown"></TextBlock>
+            <TextBlock Text="Rollenbeheer" TextAlignment="Center" Foreground="Gold" FontSize="25"></TextBlock>
+            <Separator Height="200" Opacity="0"></Separator>
+            <TextBlock x:Name="LabelOverview" Text="Overzicht" TextAlignment="Left" Foreground="White" FontSize="20" Margin="0,7,0,7" Cursor="Hand" MouseDown="LabelOverview_MouseDown"></TextBlock>
+            <TextBlock x:Name="LabelAdd" Text="Toevoegen" TextAlignment="Left" Foreground="White" FontSize="20" Margin="0,7,0,7" Cursor="Hand" MouseDown="LabelAdd_MouseDown"></TextBlock>
+            <TextBlock x:Name="LabelModify" Text="Aanpassen" TextAlignment="Left" Foreground="White" FontSize="20" Margin="0,7,0,7" Cursor="Hand" MouseDown="LabelModify_MouseDown"></TextBlock>
+            <TextBlock x:Name="LabelConfigure" Text="Configureren" TextAlignment="Left" Foreground="White" FontSize="20" Margin="0,7,0,7" Cursor="Hand" MouseDown="LabelConfigure_MouseDown"></TextBlock>
+            <Separator Height="200" Opacity="0"></Separator>
+            <TextBlock x:Name="Return" Text="Terugkeren" TextAlignment="Center" Foreground="White" FontSize="18" Cursor="Hand" MouseDown="Return_MouseDown"></TextBlock>
         </StackPanel>
 
-        <StackPanel x:Name="Overview" Grid.Column="1" Margin="10" Visibility="Visible">
-            <TextBlock Text="Overzicht Rollen" Foreground="DarkRed" FontSize="16" Margin="0,0,0,10"></TextBlock>
-            <DockPanel Height="250">
-                <StackPanel Height="250" Width="200">
-                    <TextBlock Text="Rollen" FontSize="14" Foreground="DarkRed" Margin="0,0,0,5"></TextBlock>
-                    <ListBox x:Name="OverviewList" Width="200" Height="225" HorizontalAlignment="Left" BorderThickness="0" SelectionChanged="OverviewList_SelectionChanged"></ListBox>
+        <StackPanel x:Name="Overview" Grid.Column="1" Margin="15" Visibility="Visible">
+            <TextBlock Text="Overzicht Rollen" Foreground="DarkRed" FontSize="20" Margin="0,0,0,10"></TextBlock>
+            <DockPanel Height="350">
+                <StackPanel Height="350" Width="550" HorizontalAlignment="Left">
+                    <TextBlock Text="Rollen" FontSize="16" Foreground="DarkRed" Margin="0,0,0,5"></TextBlock>
+                    <ListBox x:Name="OverviewList" Width="550" Height="325" HorizontalAlignment="Left" BorderThickness="0" SelectionChanged="OverviewList_SelectionChanged"></ListBox>
                 </StackPanel>
 
-                <StackPanel Height="250" Width="290">
-                    <TextBlock Text="Huidige Leden" FontSize="14" Foreground="DarkRed" Margin="0,0,0,5"></TextBlock>
-                    <ListBox x:Name="OverviewMembers" Width="300" Height="225" HorizontalAlignment="Left" BorderThickness="0"></ListBox>
+                <StackPanel Height="350" Width="550" HorizontalAlignment="Right">
+                    <TextBlock Text="Huidige Leden" FontSize="16" Foreground="DarkRed" Margin="0,0,0,5"></TextBlock>
+                    <ListBox x:Name="OverviewMembers" Width="550" Height="325" HorizontalAlignment="Left" BorderThickness="0"></ListBox>
                 </StackPanel>
             </DockPanel>
 
-            <TextBlock Text="Historiek" Foreground="DarkRed" FontSize="14" Margin="0,0,0,10"></TextBlock>
-            <ListBox x:Name="OverviewHistory" Width="400" Height="200" HorizontalAlignment="Left" BorderThickness="0"></ListBox>
+            <TextBlock Text="Historiek" Foreground="DarkRed" FontSize="16" Margin="0,10,0,10"></TextBlock>
+            <DockPanel>
+                <ListBox x:Name="OverviewHistory" Width="1170" Height="320" HorizontalAlignment="Left" BorderThickness="0"></ListBox>
+            </DockPanel>
         </StackPanel>
 
-        <StackPanel x:Name="Add" Grid.Column="1" Margin="10" Visibility="Collapsed">
-            <TextBlock Text="Rol Toevoegen" Foreground="DarkRed" FontSize="16" Margin="0,0,0,10"></TextBlock>
-            <DockPanel Width="230" HorizontalAlignment="Left">
+        <StackPanel x:Name="Add" Grid.Column="1" Margin="15" Visibility="Collapsed">
+            <TextBlock Text="Rol Toevoegen" Foreground="DarkRed" FontSize="20" Margin="0,0,0,10"></TextBlock>
+            <DockPanel Width="300" HorizontalAlignment="Left">
                 <TextBlock Text="Rol"></TextBlock>
-                <TextBox x:Name="AddInput" Width="200" HorizontalAlignment="Right" Margin="0,0,0,10"></TextBox>
+                <TextBox x:Name="AddInput" Width="270" HorizontalAlignment="Right" Margin="0,0,0,10"></TextBox>
             </DockPanel>
-            <DockPanel Width="230" HorizontalAlignment="Left">
+            <DockPanel Width="300" HorizontalAlignment="Left">
                 <TextBlock x:Name="AddError" Text="" Foreground="DarkRed" FontSize="11" HorizontalAlignment="Right" Margin="0,0,0,10" Visibility="Collapsed"></TextBlock>
             </DockPanel>
-            <DockPanel Width="230" HorizontalAlignment="Left">
-                <Button x:Name="AddConfirm" Width="100" Height="25" Background="DarkRed" Foreground="White" Content="Toevoegen" HorizontalAlignment="Right" Click="AddConfirm_Click"></Button>
+            <DockPanel Width="300" HorizontalAlignment="Left">
+                <Button x:Name="AddConfirm" Width="130" Height="30" Background="DarkRed" Foreground="White" Content="Toevoegen" HorizontalAlignment="Right" Click="AddConfirm_Click"></Button>
             </DockPanel>
         </StackPanel>
 
         <StackPanel x:Name="Modify" Grid.Column="1" Margin="10" Visibility="Collapsed">
-            <TextBlock Text="Rol Aanpassen" Foreground="DarkRed" FontSize="16" Margin="0,0,0,10"></TextBlock>
-            <ComboBox x:Name="ModifyPicker" Width="230" HorizontalAlignment="Left"></ComboBox>
-            <DockPanel Width="230" HorizontalAlignment="Left">
+            <TextBlock Text="Rol Aanpassen" Foreground="DarkRed" FontSize="20" Margin="0,0,0,10"></TextBlock>
+            <ComboBox x:Name="ModifyPicker" Width="300" HorizontalAlignment="Left"></ComboBox>
+            <DockPanel Width="300" HorizontalAlignment="Left">
                 <TextBlock Text="Rol" VerticalAlignment="Center"></TextBlock>
-                <TextBox x:Name="ModifyInput" Width="200" HorizontalAlignment="Right" Margin="0,10,0,10"></TextBox>
+                <TextBox x:Name="ModifyInput" Width="270" HorizontalAlignment="Right" Margin="0,10,0,10"></TextBox>
             </DockPanel>
-            <DockPanel Width="230" HorizontalAlignment="Left">
+            <DockPanel Width="300" HorizontalAlignment="Left">
                 <TextBlock x:Name="ModifyError" Text="" Foreground="DarkRed" FontSize="11" Margin="0,0,0,10" HorizontalAlignment="Right" Visibility="Collapsed"></TextBlock>
             </DockPanel>
-            <DockPanel Width="230" HorizontalAlignment="Left">
-                <Button x:Name="ModifyConfirm" Width="100" Height="25" Background="DarkRed" Foreground="White" Content="Aanpassen" HorizontalAlignment="Right" Click="ModifyConfirm_Click"></Button>
+            <DockPanel Width="300" HorizontalAlignment="Left">
+                <Button x:Name="ModifyConfirm" Width="130" Height="30" Background="DarkRed" Foreground="White" Content="Aanpassen" HorizontalAlignment="Right" Click="ModifyConfirm_Click"></Button>
             </DockPanel>
         </StackPanel>
 
         <StackPanel x:Name="Configure" Grid.Column="1" Margin="10" Visibility="Collapsed">
-            <TextBlock Text="Rol configureren" Foreground="DarkRed" FontSize="16" Margin="0,0,0,10"></TextBlock>
+            <TextBlock Text="Rol configureren" Foreground="DarkRed" FontSize="20" Margin="0,0,0,10"></TextBlock>
             
             <!-- Assign Role -->
-            <TextBlock Text="Toewijzen" FontSize="14" Foreground="DarkRed"></TextBlock>
-            <DockPanel Width="240" HorizontalAlignment="Left" Margin="0,5,0,5">
+            <TextBlock Text="Toewijzen" FontSize="16" Foreground="DarkRed"></TextBlock>
+            <DockPanel Width="300" HorizontalAlignment="Left" Margin="0,5,0,5">
                 <TextBlock Text="Lid" VerticalAlignment="Center"></TextBlock>
-                <ComboBox x:Name="ConfigurePickerAssignMember" Width="200" HorizontalAlignment="Right" SelectionChanged="ConfigurePickerAssignMember_SelectionChanged" ></ComboBox>
+                <ComboBox x:Name="ConfigurePickerAssignMember" Width="260" HorizontalAlignment="Right" SelectionChanged="ConfigurePickerAssignMember_SelectionChanged" ></ComboBox>
             </DockPanel>
-            <DockPanel Width="240" HorizontalAlignment="Left" Margin="0,5,0,5">
+            <DockPanel Width="300" HorizontalAlignment="Left" Margin="0,5,0,5">
                 <TextBlock Text="Rol" VerticalAlignment="Center"></TextBlock>
-                <ComboBox x:Name="ConfigurePickerAssignRole" Width="200" HorizontalAlignment="Right"></ComboBox>
+                <ComboBox x:Name="ConfigurePickerAssignRole" Width="260" HorizontalAlignment="Right"></ComboBox>
             </DockPanel>
-            <DockPanel Width="240" HorizontalAlignment="Left" Margin="0,5,0,5">
-                <Button x:Name="AssignConfirm" Width="100" Height="25" Background="DarkRed" Foreground="White" Content="Toewijzen" HorizontalAlignment="Right" Click="AssignConfirm_Click"></Button>
+            <DockPanel Width="300" HorizontalAlignment="Left" Margin="0,5,0,5">
+                <Button x:Name="AssignConfirm" Width="130" Height="30" Background="DarkRed" Foreground="White" Content="Toewijzen" HorizontalAlignment="Right" Click="AssignConfirm_Click"></Button>
             </DockPanel>
 
             <Separator Height="30" Opacity="0"></Separator>
             
             <!-- Retract Role -->
-            <TextBlock Text="Afnemen" FontSize="14" Foreground="DarkRed"></TextBlock>
-            <DockPanel Width="240" HorizontalAlignment="Left" Margin="0,5,0,5">
+            <TextBlock Text="Afnemen" FontSize="16" Foreground="DarkRed"></TextBlock>
+            <DockPanel Width="300" HorizontalAlignment="Left" Margin="0,5,0,5">
                 <TextBlock Text="Lid" VerticalAlignment="Center"></TextBlock>
-                <ComboBox x:Name="ConfigurePickerRetractMember" Width="200" HorizontalAlignment="Right" SelectionChanged="ConfigurePickerRetractMember_SelectionChanged" ></ComboBox>
+                <ComboBox x:Name="ConfigurePickerRetractMember" Width="260" HorizontalAlignment="Right" SelectionChanged="ConfigurePickerRetractMember_SelectionChanged" ></ComboBox>
             </DockPanel>
-            <DockPanel Width="240" HorizontalAlignment="Left" Margin="0,5,0,5">
+            <DockPanel Width="300" HorizontalAlignment="Left" Margin="0,5,0,5">
                 <TextBlock Text="Rol" VerticalAlignment="Center"></TextBlock>
-                <ComboBox x:Name="ConfigurePickerRetractRole" Width="200" HorizontalAlignment="Right"></ComboBox>
+                <ComboBox x:Name="ConfigurePickerRetractRole" Width="260" HorizontalAlignment="Right"></ComboBox>
             </DockPanel>
-            <DockPanel Width="240" HorizontalAlignment="Left" Margin="0,5,0,5">
-                <Button x:Name="RetractConfirm" Width="100" Height="25" Background="DarkRed" Foreground="White" Content="Afnemen" HorizontalAlignment="Right" Click="RetractConfirm_Click"></Button>
+            <DockPanel Width="300" HorizontalAlignment="Left" Margin="0,5,0,5">
+                <Button x:Name="RetractConfirm" Width="130" Height="30" Background="DarkRed" Foreground="White" Content="Afnemen" HorizontalAlignment="Right" Click="RetractConfirm_Click"></Button>
             </DockPanel>
         </StackPanel>
     </Grid>
