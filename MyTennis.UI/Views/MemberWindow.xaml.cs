@@ -256,7 +256,7 @@ namespace MyTennis.UI.Views
                     Zipcode = member.Zipcode,
                     City = member.City,
                     PhoneNr = member.PhoneNr
-                });;
+                });
             }       
         }
 

@@ -64,7 +64,7 @@
             </DockPanel>
         </StackPanel>
 
-        <StackPanel x:Name="Modify" Grid.Column="1" Margin="10" Visibility="Collapsed">
+        <StackPanel x:Name="Modify" Grid.Column="1" Margin="15" Visibility="Collapsed">
             <TextBlock Text="Rol Aanpassen" Foreground="DarkRed" FontSize="20" Margin="0,0,0,10"></TextBlock>
             <ComboBox x:Name="ModifyPicker" Width="300" HorizontalAlignment="Left"></ComboBox>
             <DockPanel Width="300" HorizontalAlignment="Left">
@@ -79,7 +79,7 @@
             </DockPanel>
         </StackPanel>
 
-        <StackPanel x:Name="Configure" Grid.Column="1" Margin="10" Visibility="Collapsed">
+        <StackPanel x:Name="Configure" Grid.Column="1" Margin="15" Visibility="Collapsed">
             <TextBlock Text="Rol configureren" Foreground="DarkRed" FontSize="20" Margin="0,0,0,10"></TextBlock>
             
             <!-- Assign Role -->
