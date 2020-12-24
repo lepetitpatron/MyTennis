@@ -15,9 +15,6 @@ namespace MyTennis.DAL.Configurations
                 .IsUnicode(false)
                 .IsRequired();
 
-            builder.Property(p => p.Date)
-                .IsRequired();
-
             builder.HasIndex(p => p.GameNumber).IsUnique();
         }
     }

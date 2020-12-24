@@ -38,7 +38,7 @@ namespace MyTennis.DAL.Repositories
 
         public List<Result> GetAll()
         {
-            IQueryable<Result> query = _context.Set<Result>();
+            IQueryable<Result> query = _context.Results.FromSqlRaw("EXEC GetResults");
             IEnumerable<Result> result = query.ToList();
 
             return result.ToList();

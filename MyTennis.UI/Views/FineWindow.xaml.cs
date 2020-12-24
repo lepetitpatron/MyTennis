@@ -258,7 +258,7 @@ namespace MyTennis.UI.Views
             }
             else
             {
-                MemberDTO member = (MemberDTO)SelectPicker.SelectedItem;
+                MemberDTO member = (MemberDTO) SelectPicker.SelectedItem;
 
                 SelectPicker.IsEnabled = true;
                 FillOverview(fines.FindAll(fine => fine.MemberId == member.Id));

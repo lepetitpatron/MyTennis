@@ -46,12 +46,12 @@ namespace MyTennis.DAL.Configurations
 
             builder.Property(p => p.City)
                 .HasMaxLength(30)
-                .IsUnicode(false)
-                .IsRequired();
+                .IsUnicode(false);
 
             builder.Property(p => p.PhoneNr)
                 .HasMaxLength(15)
-                .IsUnicode(false);
+                .IsUnicode(false)
+                .IsRequired(); ;
 
             builder.HasIndex(p => p.FederationNr).IsUnique();
         }

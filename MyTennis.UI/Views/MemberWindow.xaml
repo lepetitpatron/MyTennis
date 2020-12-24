@@ -147,7 +147,7 @@
         </StackPanel>
 
         <StackPanel x:Name="Modify" Margin="15" Grid.Column="1" Visibility="Collapsed">
-            <TextBlock Text="Lid Aanpassen" Foreground="DarkRed" FontSize="16" Margin="0,0,0,10"></TextBlock>
+            <TextBlock Text="Lid Aanpassen" Foreground="DarkRed" FontSize="20" Margin="0,0,0,10"></TextBlock>
             <DockPanel Width="350" HorizontalAlignment="Left" Margin="0,0,0,10">
                 <TextBlock Text="Lid" VerticalAlignment="Center"></TextBlock>
                 <ComboBox x:Name="ModifyPicker" Width="250" HorizontalAlignment="Right" SelectionChanged="ModifyPicker_SelectionChanged"></ComboBox>
@@ -206,7 +206,7 @@
         </StackPanel>
 
         <StackPanel x:Name="Delete" Margin="20" Grid.Column="1" Visibility="Collapsed">
-            <TextBlock Text="Lid Verwijderen" Foreground="DarkRed" FontSize="16" Margin="0,0,0,10"></TextBlock>
+            <TextBlock Text="Lid Verwijderen" Foreground="DarkRed" FontSize="20" Margin="0,0,0,10"></TextBlock>
             <ComboBox x:Name="DeletePicker" Width="300" HorizontalAlignment="Left" Margin="0,0,0,10"></ComboBox>
             <Button x:Name="DeleteConfirm" Width="130" Height="30" Background="DarkRed" Foreground="White" Content="Verwijderen" HorizontalAlignment="Left" Cursor="Hand" Click="DeleteConfirm_Click"></Button>
         </StackPanel>

@@ -1,6 +1,4 @@
-﻿using System;
-
-namespace MyTennis.UI.ViewModels
+﻿namespace MyTennis.UI.ViewModels
 {
     class FineView
     {

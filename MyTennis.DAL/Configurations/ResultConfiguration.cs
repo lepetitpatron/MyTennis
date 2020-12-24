@@ -17,13 +17,13 @@ namespace MyTennis.DAL.Configurations
 
             builder.Property(p => p.ScoreTeamMember)
                .HasMaxLength(3)
-               .IsUnicode(false)
-               .IsRequired();
+               .IsUnicode(false);
 
             builder.Property(p => p.ScoreOpponent)
                .HasMaxLength(3)
-               .IsUnicode(false)
-               .IsRequired();
+               .IsUnicode(false);
+
+            builder.HasIndex(sc => new { sc.GameId, sc.SetNr });
         }
     }
 }

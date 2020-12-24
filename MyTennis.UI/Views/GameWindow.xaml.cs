@@ -1,5 +1,6 @@
 ﻿using MyTennis.Core.DTO;
 using MyTennis.UI.Processors;
+using MyTennis.UI.ViewModels;
 using System;
 using System.Collections.Generic;
 using System.Windows;
@@ -17,11 +18,15 @@ namespace MyTennis.UI.Views
         readonly ResultsProcessor resultsProcessor;
         readonly MembersProcessor membersProcessor;
         readonly LeaguesProcessor leaguesProcessor;
+
         List<GameDTO> games;
         List<GameDTO> resultGames;
         List<ResultDTO> results;
         List<MemberDTO> members;
         List<LeagueDTO> leagues;
+
+        List<MemberDTO> membersWithGames;
+        List<MemberDTO> membersWithResults;
 
         public GameWindow()
         {
@@ -32,6 +37,9 @@ namespace MyTennis.UI.Views
             resultsProcessor = new ResultsProcessor();
             membersProcessor = new MembersProcessor();
             leaguesProcessor = new LeaguesProcessor();
+
+            membersWithGames = new List<MemberDTO>();
+            membersWithResults = new List<MemberDTO>();
         }
 
         private async void Window_Loaded(object sender, RoutedEventArgs e)
@@ -49,7 +57,6 @@ namespace MyTennis.UI.Views
             AddPickerMember.SelectedIndex = 0;
             AddPickerLeague.SelectedIndex = 0;
             
-
             ModifyPickerGame.ItemsSource = games.FindAll(game => game.Date >= DateTime.Today);
             ModifyPickerMember.ItemsSource = members;
             ModifyPickerLeague.ItemsSource = leagues;
@@ -57,6 +64,33 @@ namespace MyTennis.UI.Views
             ModifyPickerGameNr.ItemsSource = games.FindAll(game => game.Date <= DateTime.Today);
 
             ModifyPickerGame.SelectedIndex = 0;
+
+            // Get members with games
+            foreach (MemberDTO member in members)
+            {
+                if (games.Exists(game => game.MemberId == member.Id))
+                    membersWithGames.Add(member);
+            }
+
+            // Get members with results
+            foreach (ResultDTO result in results)
+            {
+                GameDTO game = games.Find(game => game.Id == result.GameId);
+                MemberDTO member = members.Find(member => member.Id == game.MemberId);
+
+                membersWithResults.Add(member);
+            }
+
+            SelectGamePicker.ItemsSource = membersWithGames;
+            SelectGamePicker.SelectedIndex = 0;
+
+            SelectResultPicker.ItemsSource = membersWithResults;
+            SelectResultPicker.SelectedIndex = 0;
+
+            SelectAllGames.IsChecked = true;
+            SelectAllResults.IsChecked = true;
+            SelectGames(true);
+            SelectResults(true);
 
             if (MembersAvailable())
             {
@@ -324,6 +358,230 @@ namespace MyTennis.UI.Views
             ModifyResultSet.Text = "" + result.SetNr;
             ModifyResultScoreTeam.Text = "" + result.ScoreTeamMember;
             ModifyResultScoreOpponent.Text = "" + result.ScoreOpponent;
+        }
+
+        private void FillGameOverview(List<GameDTO> games)
+        {
+            OverviewGames.Items.Clear();
+
+            MemberDTO member;
+            LeagueDTO league;
+            foreach(GameDTO game in games)
+            {
+                member = members.Find(member => member.Id == game.MemberId);
+                league = leagues.Find(league => league.Id == game.LeagueId);
+
+                OverviewGames.Items.Add(new GameView
+                {
+                    GameNumber = game.GameNumber,
+                    FirstName = member.FirstName,
+                    LastName = member.LastName,
+                    Competition = league.Name,
+                    Date = game.Date.ToShortDateString()
+                });
+            }
+        }
+
+        private void FillResultOverview(List<ResultDTO> results)
+        {
+            OverviewResults.Items.Clear();
+
+            GameDTO game;
+            MemberDTO member;
+            foreach(ResultDTO result in results)
+            {
+                game = games.Find(game => game.Id == result.GameId);
+                member = members.Find(member => member.Id == game.MemberId);
+
+                OverviewResults.Items.Add(new ResultView
+                {
+                    GameNumber = game.GameNumber,
+                    FirstName = member.FirstName,
+                    LastName = member.LastName,
+                    Date = game.Date.ToShortDateString(),
+                    SetNr = result.SetNr,
+                    ScoreTeamMember = result.ScoreTeamMember,
+                    ScoreOpponent = result.ScoreOpponent
+                });
+            }
+        }
+
+        private void SelectGames(bool allGames)
+        {
+            if (allGames)
+            {
+                SelectGamePicker.IsEnabled = false;
+                FillGameOverview(games);
+            }
+            else
+            {
+                MemberDTO member = (MemberDTO) SelectGamePicker.SelectedItem;
+
+                SelectGamePicker.IsEnabled = true;
+                FillGameOverview(games.FindAll(game => game.MemberId == member.Id));
+            }
+
+            ResetFilters(1);
+        }
+
+        private void SelectResults(bool allResults)
+        {
+            if (allResults)
+            {
+                SelectResultPicker.IsEnabled = false;
+                FillResultOverview(results);
+            }
+            else
+            {
+                MemberDTO member = (MemberDTO) SelectResultPicker.SelectedItem;
+                List<GameDTO> gamesWithMember = games.FindAll(game => game.MemberId == member.Id);
+                List<ResultDTO> resultsWithMember = new List<ResultDTO>();
+
+                foreach(GameDTO game in gamesWithMember)
+                {
+                    if (results.Exists(result => result.GameId == game.Id))
+                        resultsWithMember.Add(results.Find(result => result.GameId == game.Id));
+                }
+
+                SelectResultPicker.IsEnabled = true;
+                FillResultOverview(resultsWithMember);
+            }
+
+            ResetFilters(2);
+        }
+
+        private void SelectAllGames_Click(object sender, RoutedEventArgs e)
+        {
+            SelectGames(true);
+        }
+
+        private void SelectGame_Click(object sender, RoutedEventArgs e)
+        {
+            SelectGames(false);
+        }
+
+        private void SelectAllResults_Click(object sender, RoutedEventArgs e)
+        {
+            SelectResults(true);
+        }
+
+        private void SelectResult_Click(object sender, RoutedEventArgs e)
+        {
+            SelectResults(false);
+        }
+
+        private void SelectGamePicker_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            SelectGames(false);
+        }
+
+        private void SelectResultPicker_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            SelectResults(false);
+        }
+
+        // 1 = GameFilter | 2 = ResultFilter
+        private void ApplyFilters(int type)
+        {
+            List<GameDTO> filteredGames;
+            List<ResultDTO> filteredResults;
+
+            DateTime? gameDate = null;
+            DateTime? resultDate = null;
+
+            if (FilterGameDate.SelectedDate != null)
+                gameDate = (DateTime) FilterGameDate.SelectedDate;
+
+            if (FilterResultDate.SelectedDate != null)
+                resultDate = (DateTime) FilterResultDate.SelectedDate;
+
+            if (type == 1)
+            {
+                if (SelectGame.IsChecked == true)
+                {
+                    MemberDTO member = (MemberDTO) SelectGamePicker.SelectedItem;
+                    filteredGames = games.FindAll(game => game.MemberId == member.Id);
+                }
+                else
+                {
+                    filteredGames = games;
+                }
+
+                if (gameDate != null)
+                    filteredGames = filteredGames.FindAll(game => game.Date == gameDate);
+
+                FillGameOverview(filteredGames);
+            }
+            else
+            {
+                filteredResults = new List<ResultDTO>();
+
+                if (SelectResult.IsChecked == true)
+                {
+                    MemberDTO member = (MemberDTO) SelectResultPicker.SelectedItem;
+                    List<GameDTO> gamesWithMember = games.FindAll(game => game.MemberId == member.Id);
+
+                    foreach (GameDTO game in gamesWithMember)
+                    {
+                        if (resultDate != null)
+                        {
+                            if (results.Exists(result => result.GameId == game.Id && game.Date == resultDate))
+                                filteredResults.Add(results.Find(result => result.GameId == game.Id));
+                        }
+                        else
+                        {
+                            if (results.Exists(result => result.GameId == game.Id))
+                                filteredResults.Add(results.Find(result => result.GameId == game.Id));
+                        }                      
+                    }
+                }
+                else
+                {
+                    if (resultDate != null)
+                    {
+                        foreach (ResultDTO result in results)
+                        {
+                            GameDTO game = games.Find(game => game.Id == result.GameId);
+                            if (game.Date == resultDate)
+                                filteredResults.Add(result);
+                        }
+                    }
+                    else
+                    {
+                        filteredResults = results;
+                    }
+                }
+
+                FillResultOverview(filteredResults);
+            }
+        }
+
+        private void ResetFilters(int type)
+        {
+            if (type == 1)
+                FilterGameDate.SelectedDate = null;
+            else
+                FilterResultDate.SelectedDate = null;
+        }
+
+        private void FilterGameDate_SelectedDateChanged(object sender, SelectionChangedEventArgs e)
+        {
+            ApplyFilters(1);
+        }
+
+        private void FilterResultDate_SelectedDateChanged(object sender, SelectionChangedEventArgs e)
+        {
+            ApplyFilters(2);
+        }
+
+        private void FilterGameReset_MouseDown(object sender, MouseButtonEventArgs e)
+        {
+            ResetFilters(1);
+        }
+
+        private void FilterResultReset_MouseDown(object sender, MouseButtonEventArgs e)
+        {
+            ResetFilters(2);
         }
 
         private void ModifyPickerGameNr_SelectionChanged(object sender, SelectionChangedEventArgs e)
