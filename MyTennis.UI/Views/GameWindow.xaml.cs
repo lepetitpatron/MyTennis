@@ -48,7 +48,9 @@ namespace MyTennis.UI.Views
             members = await membersProcessor.GetAll();
             leagues = await leaguesProcessor.GetAll();
             results = await resultsProcessor.GetAll();
-
+ 
+            AddConfirmResult.IsEnabled = games.FindAll(game => game.Date <= DateTime.Today && !results.Exists(result => game.Id == result.GameId)).Count > 0 ? true : false;
+           
             AddPickerGameNr.ItemsSource = games.FindAll(game => game.Date <= DateTime.Today && !results.Exists(result => game.Id == result.GameId));
             AddPickerMember.ItemsSource = members;
             AddPickerLeague.ItemsSource = leagues;
@@ -56,7 +58,10 @@ namespace MyTennis.UI.Views
             AddPickerGameNr.SelectedIndex = 0;
             AddPickerMember.SelectedIndex = 0;
             AddPickerLeague.SelectedIndex = 0;
-            
+
+            ModifyConfirm.IsEnabled = games.FindAll(game => game.Date >= DateTime.Today).Count > 0 ? true : false;
+            ModifyConfirmResult.IsEnabled = games.FindAll(game => game.Date <= DateTime.Today).Count > 0 ? true : false;
+
             ModifyPickerGame.ItemsSource = games.FindAll(game => game.Date >= DateTime.Today);
             ModifyPickerMember.ItemsSource = members;
             ModifyPickerLeague.ItemsSource = leagues;
